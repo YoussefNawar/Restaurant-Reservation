@@ -1,8 +1,26 @@
-public class Users {
+/**
+ * @author Youssef
+ *
+ */
+public class User {
 	private String name;
 	private String role;
 	private String username;
 	private String password;
+	
+	
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", role=" + role + ", username=" + username + ", password=" + password + "]";
+	}
+
+	public User(String name, String role, String username, String password) {
+		super();
+		this.name = name;
+		this.role = role;
+		this.username = username;
+		this.password = password;
+	}
 
 	public String getName() {
 		return name;

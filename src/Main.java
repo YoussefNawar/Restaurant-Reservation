@@ -7,7 +7,12 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		FileAccess fp = new FileAccess("habl.xml");
-		Restaurant r = new Restaurant(fp.getUsers(), fp.getTables(), fp.getDishes());
+		Restaurant r = new Restaurant(fp.getUser(), fp.getTables(), fp.getDishes());
+		for(User e : r.getListOfUsers()) {
+			System.out.println(e.toString());
+		}
+		
+		
 	}
 }
 

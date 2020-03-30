@@ -1,7 +1,7 @@
+import java.util.ArrayList;
 
 public class Order {
-	private Dish dish;
-	private int quantity;
+	private ArrayList<Dish> dish;
 	private float price;
 	
 

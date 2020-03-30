@@ -23,27 +23,38 @@ public class FileAccess  {
 		this.fileName = fileName;
 	}
 
-	public ArrayList<Users> getUsers(){
+	public ArrayList<User> getUser(){
 		try {
 			DocumentBuilderFactory dbfact=DocumentBuilderFactory.newInstance();
 			DocumentBuilder dbuild =dbfact.newDocumentBuilder();
 			Document doc = dbuild.parse(new File("src/"+this.fileName));	
 		
-			ArrayList<Users> userList = new ArrayList<>();		
+			ArrayList<User> userList = new ArrayList<>();		
 			
 			NodeList nlist = doc.getElementsByTagName("user");
 			
 			for(int i=0;i<nlist.getLength();i++) {
-				Users e=new Users();				
+					
 				Node nNode =  nlist.item(i);
 								
 				if(nNode instanceof Element) {
 					Element eElement =(Element)nNode;
 
-				e.setName(eElement.getElementsByTagName("name").item(0).getTextContent());
-				e.setRole(eElement.getElementsByTagName("role").item(0).getTextContent());
-				e.setUsername(eElement.getElementsByTagName("username").item(0).getTextContent());
-				e.setPassword(eElement.getElementsByTagName("password").item(0).getTextContent());
+					User e= new User(eElement
+									.getElementsByTagName("name")
+									.item(0).getTextContent()
+									,eElement
+									.getElementsByTagName("role")
+									.item(0)
+									.getTextContent()
+									,eElement
+									.getElementsByTagName("username")
+									.item(0)
+									.getTextContent()
+									,eElement
+									.getElementsByTagName("password")
+									.item(0)
+									.getTextContent());
 				
 				userList.add(e);
 
