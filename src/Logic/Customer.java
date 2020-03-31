@@ -16,9 +16,9 @@ public class Customer extends User {
 		Reservation currentReservation = new Reservation(seatNumber,tableID, date,smoking);
 	}
 	
-	public void addtoOrder(String name) {
+	public void addtoOrder(String dish) {
 		Order currentOrder = currentReservation.getOrder();
-		currentOrder.addDish(name);
+		currentOrder.addDish(dish);
 		currentReservation.setOrder(currentOrder);
 	}
 	
