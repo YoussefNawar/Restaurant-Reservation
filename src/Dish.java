@@ -3,6 +3,13 @@ public class Dish {
 	private String name;
 	private int price;
 	private String type;
+	
+	
+	
+	public Dish() {
+		super();
+	}
+	
 	public Dish(String name, int price, String type) {
 		this.name = name;
 		this.price = price;

@@ -19,17 +19,14 @@ public class FileAccess  {
 		return fileName;
 	}
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
 	public ArrayList<User> getUser(){
 		try {
 			DocumentBuilderFactory dbfact=DocumentBuilderFactory.newInstance();
 			DocumentBuilder dbuild =dbfact.newDocumentBuilder();
 			Document doc = dbuild.parse(new File("src/"+this.fileName));	
 		
-			ArrayList<User> userList = new ArrayList<>();		
+			ArrayList<User> userList = new ArrayList<>();	
+
 			
 			NodeList nlist = doc.getElementsByTagName("user");
 			
@@ -60,12 +57,42 @@ public class FileAccess  {
 
 				}
 			}	
-			return userList;
+			return extracted(userList);
+			
 
 		}
 		catch(Exception e){
 			return null;
 		}
+	}
+
+	private ArrayList<User>  extracted (ArrayList<User> userList) {
+		ArrayList<User> listOfUser = new ArrayList<>();
+		for(int i=0 ; i < userList.size(); i++) {
+			User e = userList.get(i);	
+			if (e.getRole().equals("Manager")) {
+				Manager x = new Manager(e.getName(),e.getUsername(),e.getPassword());
+				listOfUser.add(x);
+			}
+			if (e.getRole().equals("Client")) {
+				 Customer x = new Customer(e.getName(),e.getUsername(),e.getPassword());
+				 listOfUser.add(x);
+			}
+			if (e.getRole().equals("Cooker")){
+				 Cook x = new Cook(e.getName(),e.getUsername(),e.getPassword());
+				 listOfUser.add(x);
+				 
+			}
+			if (e.getRole().equals("Waiter")) {
+				 Waiter x = new Waiter(e.getName(),e.getUsername(),e.getPassword());
+				 listOfUser.add(x);
+			}
+			
+			
+		}
+
+			return listOfUser;
+
 	}
 	
 	public ArrayList<Table> getTables(){

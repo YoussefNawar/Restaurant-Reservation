@@ -4,6 +4,7 @@ public class Restaurant {
 	private ArrayList<User> listOfUsers;
 	private ArrayList<Table> listOfTables;
 	private ArrayList<Dish> listOfDishes;
+ 
 
 	public Restaurant(ArrayList<User> listOfUsers, ArrayList<Table> listOfTables, ArrayList<Dish> listOfDishes) {
 		this.listOfUsers = listOfUsers;
@@ -34,6 +35,7 @@ public class Restaurant {
 	public void setListOfDishes(ArrayList<Dish> listOfDishes) {
 		this.listOfDishes = listOfDishes;
 	}
+	
 	
 	public ArrayList<User> filterBy(String jobtitle){
 		ArrayList<User> result = new ArrayList<>(); 

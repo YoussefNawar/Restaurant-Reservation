@@ -1,8 +1,51 @@
 import java.util.ArrayList;
 
 public class Order {
-	private ArrayList<Dish> dish;
+	private ArrayList <DishPair> plateList;
 	private float price;
+	
+	
+	
+	public Order() {
+		this.plateList = new ArrayList<>();
+		this.price = 0;
+	}
+
+    public	void addDish(String name) {
+		for (DishPair e : this.plateList) {
+			if (e.getName().equals(name)) {
+				e.setCount(e.getCount() + 1);
+				return;
+			}
+		}
+		this.plateList.add(new DishPair(name,1));
+	}
+    
+	public void removeDish(String name) {
+		for (DishPair e : this.plateList) {
+			if (e.getName().equals(name))
+				e.setCount(e.getCount() - 1);
+		}
+	}
+
+	public ArrayList <DishPair> getPlateList() {
+		return plateList;
+	}
+	
+	public float getPrice() {
+		return price;
+	}
+
+	void totalPrice() {
+		for(DishPair e : this.plateList) {
+			for(Dish x : Main.r.getListOfDishes()) {
+				if (e.getName().equals(x.getName())) price += e.getCount()*x.getPrice();
+			}
+		}
+		
+	}
+
+
 	
 
 }

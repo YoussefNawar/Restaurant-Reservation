@@ -9,13 +9,17 @@ public class User {
 	private String password;
 	
 	
+	
+	public User() {
+		super();
+	}
+
 	@Override
 	public String toString() {
 		return "User [name=" + name + ", role=" + role + ", username=" + username + ", password=" + password + "]";
 	}
 
 	public User(String name, String role, String username, String password) {
-		super();
 		this.name = name;
 		this.role = role;
 		this.username = username;
