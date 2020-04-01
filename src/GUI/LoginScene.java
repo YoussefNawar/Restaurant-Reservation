@@ -44,7 +44,6 @@ public class LoginScene {
 
     public void prepareScene() {
 
-
         Label Usernamelabel = new Label("Username:");
         Usernamelabel.setFont(new Font("Arial", 14));
         Usernamelabel.setStyle("-fx-text-fill: #1a1100");
