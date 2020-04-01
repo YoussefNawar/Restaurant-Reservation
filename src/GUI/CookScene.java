@@ -1,12 +1,14 @@
+package GUI;
+
 import javafx.scene.Scene;
         import javafx.scene.layout.GridPane;
         import javafx.stage.Stage;
 
-public class cookscene {
+public class CookScene {
     Scene scene ;
     Stage stage ;
-    login l ;
-    public cookscene (Stage stage){
+    LoginScene l ;
+    public CookScene(Stage stage){
 
         this.stage=stage ;
     }
@@ -21,7 +23,7 @@ public class cookscene {
     public Scene getScene() {
         return this.scene ;
     }
-    public void setlogin(login l){
+    public void setlogin(LoginScene l){
 
         this.l=l ;
 

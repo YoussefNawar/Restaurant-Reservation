@@ -1,16 +1,12 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+package GUI;
+
 import javafx.scene.Scene ;
-import javafx.scene.control.Button ;
-import javafx.scene.control.Label ;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-public class Waiterscene {Scene scene ;
+public class WaiterScene {Scene scene ;
     Stage stage ;
-    login l ;
-    public Waiterscene (Stage stage){
+    LoginScene l ;
+    public WaiterScene(Stage stage){
 
         this.stage=stage ;
     }
@@ -25,7 +21,7 @@ public class Waiterscene {Scene scene ;
     public Scene getScene() {
         return this.scene ;
     }
-    public void setlogin(login l){
+    public void setlogin(LoginScene l){
 
         this.l=l ;
 

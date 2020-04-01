@@ -1,18 +1,15 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+package GUI;
+
 import javafx.scene.Scene ;
-import javafx.scene.control.Button ;
-import javafx.scene.control.Label ;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-
-public class manscene {
+public class ManScene {
 Scene scene ;
 Stage stage ;
-login l ;
-public manscene (Stage stage){
+LoginScene l ;
+
+public ManScene(Stage stage){
 
     this.stage=stage ;
 }
@@ -27,7 +24,7 @@ public void preparescene (){
     public Scene getScene() {
         return this.scene ;
     }
-public void setlogin(login l){
+public void setlogin(LoginScene l){
 
     this.l=l ;
 

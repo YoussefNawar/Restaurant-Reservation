@@ -22,9 +22,10 @@ public class FileAccess  {
 
 	public ArrayList<User> getUser(){
 		try {
-			DocumentBuilderFactory dbfact=DocumentBuilderFactory.newInstance();
-			DocumentBuilder dbuild =dbfact.newDocumentBuilder();
-			Document doc = dbuild.parse(new File("src/"+this.fileName));	
+			DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dbuild = dbfact.newDocumentBuilder();
+
+			Document doc = dbuild.parse(new File("src/"+this.fileName));
 		
 			ArrayList<User> userList = new ArrayList<>();	
 
@@ -53,7 +54,6 @@ public class FileAccess  {
 									.getElementsByTagName("password")
 									.item(0)
 									.getTextContent());
-				
 				userList.add(e);
 
 				}
