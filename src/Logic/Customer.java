@@ -1,6 +1,8 @@
 package Logic;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import Main.*;
 
 public class Customer extends User {
 	private Reservation currentReservation;
@@ -8,12 +10,12 @@ public class Customer extends User {
 	
 
 	public Customer(String name,String username, String password) {
-		super(name, "Customer", username, password);
+		super(name, "Client", username, password);
 		this.reservations= new ArrayList<Reservation>();
 	}
 
-	public void createNewReservation(int seatNumber, int tableID, Date date, boolean smoking) {
-		Reservation currentReservation = new Reservation(seatNumber,tableID, date,smoking);
+	public void createNewReservation(int seatNumber, int tableID, Date startdate,Date enddate, boolean smoking) {
+		this.currentReservation = new Reservation(seatNumber,tableID, startdate ,enddate,smoking,this.getName(),false);
 	}
 	
 	public void addtoOrder(String dish) {
@@ -21,12 +23,18 @@ public class Customer extends User {
 		currentOrder.addDish(dish);
 		currentReservation.setOrder(currentOrder);
 	}
+	public void removeFromOrder(String dish){
+		removeFromOrder(dish);
+	}
 	
 	public void saveReservation() {
+		this.currentReservation.getOrder().totalPrice();
 		this.reservations.add(currentReservation);
+		Main.r.addReservation(this.currentReservation);
+
 	}
 
-
-	
-	
+	public Reservation getCurrentReservation() {
+		return currentReservation;
+	}
 }

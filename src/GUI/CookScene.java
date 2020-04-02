@@ -1,17 +1,24 @@
 package GUI;
 
+import Logic.Cook;
 import javafx.scene.Scene;
-        import javafx.scene.layout.GridPane;
-        import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class CookScene {
     Scene scene ;
     Stage stage ;
     LoginScene l ;
-    public CookScene(Stage stage){
-        this.stage=stage ;
+    Cook ck;
+
+    public CookScene(Stage stage, Cook e) {
+        this.ck = e;
+        this.stage = stage;
+        prepareScene();
+
     }
-    public void preparescene (){
+    public void prepareScene (){
+        this.stage.setTitle("Cook");
         GridPane grid = new GridPane();
         scene = new Scene(grid, 600, 400);
     }
@@ -19,9 +26,7 @@ public class CookScene {
         return this.scene ;
     }
     public void setlogin(LoginScene l){
-
         this.l=l ;
-
     }
 
 

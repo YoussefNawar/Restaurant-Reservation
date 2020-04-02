@@ -1,12 +1,9 @@
 package GUI;
 
-import Logic.Restaurant;
-import Logic.User;
-import Main.Main;
+import Logic.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -24,20 +21,15 @@ import javafx.stage.Stage;
 public class LoginScene {
     Scene scene;
     Stage stage;
-    ManScene m;
-    CookScene ck;
-    WaiterScene w;
     Restaurant r;
     TextField UserTextField;
     PasswordField PasswordField;
     Label validateLabel;
 
+
     public LoginScene(Stage stage, Restaurant r) {
         this.stage = stage;
-        stage.setTitle("Login");
-        m = new ManScene(stage);
-        ck = new CookScene(stage);
-        w = new WaiterScene(stage);
+        this.stage.setTitle("Login");
         this.r = r;
         prepareScene();
     }
@@ -139,40 +131,34 @@ public class LoginScene {
         return this.scene;
     }
 
-    public void setmanscene(ManScene m) {
-        this.m = m;
-    }
-
-    public void setcookscene(CookScene ck) {
-        this.ck = ck;
-    }
-
-    public void setWaiterscene(WaiterScene w) {
-        this.w = w;
-    }
-
     public void valid() {
         String Username = UserTextField.getText();
         String Password = PasswordField.getText();
         for (User e : r.getListOfUsers()) {
             if ((Username.equals(e.getUsername())) && (Password.equals(e.getPassword()))) {
                 if (e.getRole().equals("Manager")) {
-                    m.preparescene();
+                    ManScene m = new ManScene(this.stage, (Manager) e);
                     stage.setScene(m.getScene());
                 } else if (e.getRole().equals("Cook")) {
-                    ck.preparescene();
-                    stage.setScene(ck.getScene());
+                    CookScene cS = new CookScene(this.stage, (Cook) e);
+                    stage.setScene(cS.getScene());
                 } else if (e.getRole().equals("Waiter")) {
-                    w.preparescene();
+                    WaiterScene w = new WaiterScene(this.stage, (Waiter) e);
                     stage.setScene(w.getScene());
+                } else if (e.getRole().equals("Client")) {
+                    CustomerScene c = new CustomerScene(this.stage, (Customer) e);
+                    stage.setScene(c.getScene());
+
                 }
-            } else {
-                validateLabel.setText("Incorrect username or password ");
-                validateLabel.setStyle("-fx-text-fill: #4d3300");
+                } else {
+                    validateLabel.setText("Incorrect username or password ");
+                    validateLabel.setStyle("-fx-text-fill: #4d3300");
+                }
+
             }
 
         }
 
     }
-}
+
 

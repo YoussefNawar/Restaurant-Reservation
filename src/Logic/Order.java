@@ -11,7 +11,12 @@ public class Order {
 		this.price = 0;
 	}
 
-    public	void addDish(String name) {
+	public Order(ArrayList<DishPair> plateList, float price) {
+		this.plateList = plateList;
+		this.price = price;
+	}
+
+	public	void addDish(String name) {
 		for (DishPair e : this.plateList) {
 			if (e.getName().equals(name)) {
 				e.setCount(e.getCount() + 1);
@@ -38,14 +43,21 @@ public class Order {
 
 	void totalPrice() {
 		for(DishPair e : this.plateList) {
+
 			for(Dish x : Main.r.getListOfDishes()) {
-				if (e.getName().equals(x.getName())) price += e.getCount()*x.getPrice();
+				if (e.getName().equals(x.getName())) {
+					price += e.getCount()*x.getPrice();
+				}
 			}
 		}
 		
 	}
 
-
-	
-
+	@Override
+	public String toString() {
+		return " Order :"
+				 + plateList.toString() +
+				", Total Price=" + price
+				;
+	}
 }

@@ -8,16 +8,14 @@ public class User {
 	private String role;
 	private String username;
 	private String password;
-	
-	
-	
+
 	public User() {
 		super();
 	}
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", role=" + role + ", username=" + username + ", password=" + password + "]";
+		return "Name=" + name + ", Role=" + role + ", Username=" + username + ",Password=" + password ;
 	}
 
 	public User(String name, String role, String username, String password) {

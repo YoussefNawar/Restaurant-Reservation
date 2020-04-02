@@ -1,42 +1,59 @@
 package Main;
 
-import GUI.WaiterScene;
-import GUI.CookScene;
-import GUI.LoginScene;
-import GUI.ManScene;
+import GUI.*;
+import Logic.Customer;
 import Logic.FileAccess;
+import Logic.FileAcessWrite;
 import Logic.Restaurant;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.spi.CalendarDataProvider;
 
-public class Main extends Application {
-    static FileAccess fp = new FileAccess("data.xml");
-    public static Restaurant r;
+
+public class Main //extends Application {
+    {
+    public static Restaurant r = new Restaurant(FileAccess.getUser(), FileAccess.getTables(),
+            FileAccess.getDishes(),FileAccess.getReservations());;
 
     /**
      * @param args
      */
-    public static void main(String[] args) {
-		launch(args);
+    public static void main(String[] args) throws ParseException, ParserConfigurationException {
+        Date d = new Date();
+
+//        Customer c = (Customer) r.getListOfUsers().get(1);
+//        DateFormat dateFormat =new SimpleDateFormat("HH:mm dd/MM/yyyy");
+//        Date a = dateFormat.parse("13:00 12/12/2012");
+//        Date b = dateFormat.parse("14:00 12/12/2012");
+//        c.createNewReservation(4,1,a,b,true);
+//        c.addtoOrder("Mushroom Soup");
+//        c.addtoOrder("Molten Cake");
+//        c.saveReservation();
+
+        FileAcessWrite.save(r);
+
+
+		//launch(args);
     }
 
-    @Override
-    public void start(Stage primaryStage) {
-        Image img = new Image("logo.jpg");
-        r = new Restaurant(fp.getUser(), fp.getTables(), fp.getDishes());
-        ManScene mom = new ManScene(primaryStage);
-        CookScene ck = new CookScene(primaryStage);
-        WaiterScene w = new WaiterScene(primaryStage);
-        LoginScene lol = new LoginScene(primaryStage,r);
-        mom.setlogin(lol);
-        ck.setlogin(lol);
-        w.setlogin(lol);
-        primaryStage.setScene(lol.getScene());
-        primaryStage.getIcons().setAll(img);
-        primaryStage.show();
-    }
+//    @Override
+//    public void start(Stage primaryStage) {
+//        primaryStage.setResizable(false);
+//        Image img = new Image("logo.jpg");
+//       // LoginScene lol = new LoginScene(primaryStage,r);
+//        CustomerScene cs = new CustomerScene(primaryStage,(Customer)r.getListOfUsers().get(2));
+//        primaryStage.setScene(cs.getScene());
+//        primaryStage.getIcons().setAll(img);
+//        primaryStage.show();
+//    }
 
 }
 	
