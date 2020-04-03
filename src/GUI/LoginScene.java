@@ -137,14 +137,14 @@ public class LoginScene {
         for (User e : r.getListOfUsers()) {
             if ((Username.equals(e.getUsername())) && (Password.equals(e.getPassword()))) {
                 if (e.getRole().equals("Manager")) {
-                    ManScene m = new ManScene(this.stage, (Manager) e);
-                    stage.setScene(m.getScene());
+                  //  ManScene m = new ManScene(this.stage, (Manager) e);
+                  //  stage.setScene(m.getScene());
                 } else if (e.getRole().equals("Cook")) {
-                    CookScene cS = new CookScene(this.stage, (Cook) e);
-                    stage.setScene(cS.getScene());
+                 //   CookScene cS = new CookScene(this.stage, (Cook) e);
+                   // stage.setScene(cS.getScene());
                 } else if (e.getRole().equals("Waiter")) {
-                    WaiterScene w = new WaiterScene(this.stage, (Waiter) e);
-                    stage.setScene(w.getScene());
+                   // WaiterScene w = new WaiterScene(this.stage, (Waiter) e);
+                    //stage.setScene(w.getScene());
                 } else if (e.getRole().equals("Client")) {
                     CustomerScene c = new CustomerScene(this.stage, (Customer) e);
                     stage.setScene(c.getScene());

@@ -1,10 +1,7 @@
 package Main;
 
 import GUI.*;
-import Logic.Customer;
-import Logic.FileAccess;
-import Logic.FileAcessWrite;
-import Logic.Restaurant;
+import Logic.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -18,8 +15,8 @@ import java.util.Date;
 import java.util.spi.CalendarDataProvider;
 
 
-public class Main //extends Application {
-    {
+public class Main extends Application {
+
     public static Restaurant r = new Restaurant(FileAccess.getUser(), FileAccess.getTables(),
             FileAccess.getDishes(),FileAccess.getReservations());;
 
@@ -38,22 +35,24 @@ public class Main //extends Application {
 //        c.addtoOrder("Molten Cake");
 //        c.saveReservation();
 
+
+
+		launch(args);
         FileAcessWrite.save(r);
-
-
-		//launch(args);
     }
 
-//    @Override
-//    public void start(Stage primaryStage) {
-//        primaryStage.setResizable(false);
-//        Image img = new Image("logo.jpg");
-//       // LoginScene lol = new LoginScene(primaryStage,r);
+      @Override
+      public void start(Stage primaryStage) {
+        //primaryStage.setResizable(false);
+        Image img = new Image("logo.jpg");
+       // LoginScene lol = new LoginScene(primaryStage,r);
 //        CustomerScene cs = new CustomerScene(primaryStage,(Customer)r.getListOfUsers().get(2));
-//        primaryStage.setScene(cs.getScene());
-//        primaryStage.getIcons().setAll(img);
-//        primaryStage.show();
-//    }
+//          System.out.println(r.getListOfUsers().size());
+          ReservationScene mn = new ReservationScene(primaryStage,r.getListOfUsers().get(4),r.getListOfReservations());
+        primaryStage.setScene(mn.getScene());
+        primaryStage.getIcons().setAll(img);
+        primaryStage.show();
+    }
 
 }
 	

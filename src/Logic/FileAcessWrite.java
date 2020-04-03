@@ -40,8 +40,6 @@ public class FileAcessWrite {
 
     public static void save(Restaurant r) throws ParserConfigurationException {
 
-
-
         Element rootEle = dom.createElement("Restaurant");
         Element e = dom.createElement("users");
         for(User user : r.getListOfUsers()) {
@@ -88,7 +86,6 @@ public class FileAcessWrite {
         }
 
     public static Element userCreate(User e) {
-
         Element eus = dom.createElement("user");
         Element name = dom.createElement("name");
         name.appendChild(dom.createTextNode(e.getName()));
