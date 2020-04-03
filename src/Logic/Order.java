@@ -1,5 +1,7 @@
 package Logic;
 import java.util.ArrayList;
+import java.util.Objects;
+
 import Main.Main;
 
 public class Order {
@@ -43,7 +45,6 @@ public class Order {
 
 	void totalPrice() {
 		for(DishPair e : this.plateList) {
-
 			for(Dish x : Main.r.getListOfDishes()) {
 				if (e.getName().equals(x.getName())) {
 					price += e.getCount()*x.getPrice();
@@ -59,5 +60,14 @@ public class Order {
 				 + plateList.toString() +
 				", Total Price=" + price
 				;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Order order = (Order) o;
+		return Float.compare(order.price, price) == 0 &&
+				Objects.equals(plateList, order.plateList);
 	}
 }

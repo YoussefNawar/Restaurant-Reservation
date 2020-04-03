@@ -20,11 +20,11 @@ import java.util.Date;
 
 import Main.*;
 
-public class FileAcessWrite {
-    String fileName;
-    static final String outputFile = "file.xml";
-    static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-    static DocumentBuilder documentBuilder;
+public class FileAccessWrite {
+
+    private String outputFile;
+    private static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    private static DocumentBuilder documentBuilder;
 
     static {
         try {
@@ -36,12 +36,11 @@ public class FileAcessWrite {
 
     static Document dom = documentBuilder.newDocument();
 
+    public FileAccessWrite(String outputFile) {
+        this.outputFile = outputFile;
+    }
 
-
-    public static void save(Restaurant r) throws ParserConfigurationException {
-
-
-
+    public void save(Restaurant r) throws ParserConfigurationException {
         Element rootEle = dom.createElement("Restaurant");
         Element e = dom.createElement("users");
         for(User user : r.getListOfUsers()) {
@@ -62,13 +61,14 @@ public class FileAcessWrite {
             rootEle.appendChild(d);
         }
         Element re = dom.createElement("reservations");
-        for(Reservation res : Main.r.getListOfReservations()) {
-            Element eus = reservationCreate(res);
-            re.appendChild(eus);
-            rootEle.appendChild(re);
+        if (r.getListOfReservations() != null) {
+            for (Reservation res : r.getListOfReservations()) {
+                Element eus = reservationCreate(res);
+                re.appendChild(eus);
+                rootEle.appendChild(re);
+            }
+            dom.appendChild(rootEle);
         }
-
-        dom.appendChild(rootEle);
 
         try {
             Transformer tr = TransformerFactory.newInstance().newTransformer();
@@ -136,7 +136,6 @@ public class FileAcessWrite {
     }
 
     public static Element reservationCreate(Reservation e) {
-
         Element eus = dom.createElement("reservation");
 
         Element number_of_seats = dom.createElement("number_of_seats");
@@ -157,8 +156,8 @@ public class FileAcessWrite {
         Element smoking = dom.createElement("smoking");
         smoking.appendChild(dom.createTextNode(String.valueOf(e.isSmoking())));
 
-        Element done = dom.createElement("done");
-        done.appendChild(dom.createTextNode(String.valueOf(e.isDone())));
+        Element state = dom.createElement("state");
+        state.appendChild(dom.createTextNode(e.getState()));
 
         Element totalPrice = dom.createElement("totalPrice");
         totalPrice.appendChild(dom.createTextNode(e.getOrder().getPrice()+""));
@@ -175,13 +174,12 @@ public class FileAcessWrite {
             order.appendChild(eu);
             order.appendChild(count);
         }
-
         eus.appendChild(number_of_seats);
         eus.appendChild(name);
         eus.appendChild(startingdate);
         eus.appendChild(endingdate);
         eus.appendChild(smoking);
-        eus.appendChild(done);
+        eus.appendChild(state);
         eus.appendChild(tableId);
         order.appendChild(totalPrice);
         eus.appendChild(order);

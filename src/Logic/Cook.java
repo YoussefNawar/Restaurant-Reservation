@@ -1,6 +1,6 @@
 package Logic;
 
-public class Cook extends User {
+public class Cook extends User implements Employee {
 
 	public Cook(String name, String username, String password) {
 		super(name,"Cook", username, password);
@@ -9,4 +9,9 @@ public class Cook extends User {
 
 	}
 
+	@Override
+	public void setReservationstate(Reservation x) {
+		x.setState("Cooked");
+
+	}
 }
