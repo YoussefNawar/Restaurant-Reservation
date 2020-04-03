@@ -88,7 +88,6 @@ public class FileAccessWrite {
         }
 
     public static Element userCreate(User e) {
-
         Element eus = dom.createElement("user");
         Element name = dom.createElement("name");
         name.appendChild(dom.createTextNode(e.getName()));

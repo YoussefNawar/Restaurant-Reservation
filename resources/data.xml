@@ -25,11 +25,11 @@
 			<password>k6987_#LpQ</password>
 		</user>
 		<user>
-			<name>Tomas Hobbens</name>
-			<role>Cooker</role>
-			<username>hobbens_tom</username>
-			<password>cooker_pass</password>
-		</user>
+		<name>Tomas Hobbens</name>
+		<role>Cooker</role>
+		<username>hobbens_tom</username>
+		<password>cooker_pass</password>
+	</user>
 	</users>
 	<tables>
 		<table>

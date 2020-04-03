@@ -25,6 +25,12 @@
             <username>george</username>
             <password>k6987_#LpQ</password>
         </user>
+        <user>
+            <name>Tomas Hobbens</name>
+            <role>Cooker</role>
+            <username>hobbens_tom</username>
+            <password>cooker_pass</password>
+        </user>
     </users>
     <tables>
         <table>
@@ -115,6 +121,22 @@
                 <dishe>Fried Potatos</dishe>
                 <quantity>1</quantity>
                 <totalPrice>100.0</totalPrice>
+            </order>
+        </reservation>
+        <reservation>
+            <number_of_seats>5</number_of_seats>
+            <name>John Doe</name>
+            <startingdate>13:00 15/12/2012</startingdate>
+            <endingdate>14:00 15/12/2012</endingdate>
+            <smoking>true</smoking>
+            <state>false</state>
+            <tableId>1</tableId>
+            <order>
+                <dishe>Mushroom Soup</dishe>
+                <quantity>1</quantity>
+                <dishe>Molten Cake</dishe>
+                <quantity>1</quantity>
+                <totalPrice>120.0</totalPrice>
             </order>
         </reservation>
     </reservations>
