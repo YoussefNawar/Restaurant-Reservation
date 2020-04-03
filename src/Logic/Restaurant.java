@@ -82,7 +82,7 @@ public class Restaurant  {
 			if(X.size()==0)return true;
 			for(int i = 0;i<X.size();i++){
 				Reservation res = (Reservation) X.get(i);
-				if((a.before(res.getStartingDate())&&b.after(res.getEndingDate()))||()) {
+				if((a.before(res.getStartingDate())&&b.after(res.getEndingDate()))) {
 					j = 1;
 				}
 			}
