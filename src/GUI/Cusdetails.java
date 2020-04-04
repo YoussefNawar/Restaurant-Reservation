@@ -41,27 +41,38 @@ public void preparescene(){
     HBox h1=new HBox();
     HBox h2 =new HBox();
     HBox h3=new HBox();
+
             Label UserLabel=new Label("Username : ");
             Label PasswordLabel=new Label("Password");
 
     TextField UserField=new TextField();
+    Label l=new Label() ;
     TextField PassField=new TextField();
     Button newp=new Button("Change Password");
+   VBox v2=new VBox();
     UserField.setText(c.getUsername());
     PassField.setText(c.getPassword());
     newp.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
             TextField newpassword=new TextField();
-           // newpassword.setText(c.setPassword(s));
 
+            Button done= new Button("Done");
             h3.getChildren().add(newpassword);
+            done.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    c.setPassword(newpassword.getText());
+                   v2.getChildren().addAll(h3,done);
+                }
+            });
         }
     });
+
     h1.getChildren().addAll(UserLabel,UserField);
     h2.getChildren().addAll(PasswordLabel,PassField);
     VBox v=new VBox();
-    v.getChildren().addAll(h1,h2,newp,h3);
+    v.getChildren().addAll(h1,h2,newp,v2);
     scene=new Scene(v,250,250);
 }
     public Scene getScene() {
