@@ -32,9 +32,6 @@ public class CustomerScene {
     }
     public void prepareScene(){
         this.stage.setTitle("Customer");
-
-
-
         VBox vBox = new VBox();
         HBox hBox1= new HBox();
         hBox1.setAlignment(Pos.CENTER);
@@ -43,7 +40,6 @@ public class CustomerScene {
         btn1.setStyle("-fx-background-color: #ffe6b3");
         hBox1.setStyle("-fx-background-color: #ffe6b3");
         hBox1.getChildren().add(btn1);
-
         HBox hBox2= new HBox();
         hBox2.setAlignment(Pos.CENTER);
         Button btn2 = new Button("View previous reservations");

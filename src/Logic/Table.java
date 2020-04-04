@@ -12,18 +12,14 @@ public class Table {
         this.seatNo = seatNo;
         this.smoking = smoking;
     }
-
     public int getId() {
         return id;
     }
-
     public int getSeatNo() {
         return seatNo;
     }
-
     public boolean isSmoking() {
         return smoking;
     }
-
 }
 

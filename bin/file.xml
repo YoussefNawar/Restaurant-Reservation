@@ -34,21 +34,6 @@
     </users>
     <tables>
         <table>
-            <number>1</number>
-            <number_of_seats>5</number_of_seats>
-            <smoking>false</smoking>
-        </table>
-        <table>
-            <number>2</number>
-            <number_of_seats>12</number_of_seats>
-            <smoking>false</smoking>
-        </table>
-        <table>
-            <number>3</number>
-            <number_of_seats>12</number_of_seats>
-            <smoking>true</smoking>
-        </table>
-        <table>
             <number>4</number>
             <number_of_seats>4</number_of_seats>
             <smoking>false</smoking>
@@ -59,13 +44,28 @@
             <smoking>true</smoking>
         </table>
         <table>
+            <number>1</number>
+            <number_of_seats>5</number_of_seats>
+            <smoking>false</smoking>
+        </table>
+        <table>
+            <number>7</number>
+            <number_of_seats>6</number_of_seats>
+            <smoking>true</smoking>
+        </table>
+        <table>
             <number>6</number>
             <number_of_seats>7</number_of_seats>
             <smoking>true</smoking>
         </table>
         <table>
-            <number>7</number>
-            <number_of_seats>6</number_of_seats>
+            <number>2</number>
+            <number_of_seats>12</number_of_seats>
+            <smoking>false</smoking>
+        </table>
+        <table>
+            <number>3</number>
+            <number_of_seats>12</number_of_seats>
             <smoking>true</smoking>
         </table>
     </tables>
@@ -110,10 +110,10 @@
         <reservation>
             <number_of_seats>4</number_of_seats>
             <name>John Doe</name>
-            <startingdate>13:00 13/12/2017</startingdate>
-            <endingdate>14:00 13/12/2017</endingdate>
+            <startingdate>13:00 04/04/2020</startingdate>
+            <endingdate>14:00 04/04/2020</endingdate>
             <smoking>true</smoking>
-            <state>pending</state>
+            <state>served</state>
             <tableId>1</tableId>
             <order>
                 <dishe>Greek Salade</dishe>
@@ -124,13 +124,13 @@
             </order>
         </reservation>
         <reservation>
-            <number_of_seats>5</number_of_seats>
+            <number_of_seats>12</number_of_seats>
             <name>John Doe</name>
             <startingdate>13:00 15/12/2012</startingdate>
             <endingdate>14:00 15/12/2012</endingdate>
             <smoking>true</smoking>
-            <state>false</state>
-            <tableId>1</tableId>
+            <state>pending</state>
+            <tableId>3</tableId>
             <order>
                 <dishe>Mushroom Soup</dishe>
                 <quantity>1</quantity>

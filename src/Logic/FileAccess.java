@@ -20,12 +20,7 @@ public class FileAccess {
     private String filename;
     private static DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
     private static DocumentBuilder dbuild;
-
-
-
     static Document doc;
-
-
 
     public FileAccess(String outputFile) {
         this.filename = outputFile;
@@ -45,10 +40,7 @@ public class FileAccess {
                 e.printStackTrace();
             }
         }
-
-
     }
-
     public ArrayList<User> getUser() {
         ArrayList<User> userList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("user");
@@ -81,7 +73,6 @@ public class FileAccess {
         }
         return userList;
     }
-
     public ArrayList<Table> getTables() {
         ArrayList<Table> tableList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("table");
@@ -109,7 +100,6 @@ public class FileAccess {
         }
         return tableList;
     }
-
     public ArrayList<Dish> getDishes() {
         ArrayList<Dish> dishList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("dish");
@@ -131,9 +121,8 @@ public class FileAccess {
                 dishList.add(e);
             }
         }
-		return dishList;
+        return dishList;
     }
-
     public ArrayList<Reservation> getReservations() {
         ArrayList<Reservation> reservationList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("reservation");
@@ -165,7 +154,6 @@ public class FileAccess {
         }
         return reservationList;
     }
-
     private Reservation createReservationNode(Element eElement, Order o) throws ParseException {
         assert eElement != null;
         Integer a = Integer.valueOf(eElement.getElementsByTagName("number_of_seats").item(0).getTextContent());

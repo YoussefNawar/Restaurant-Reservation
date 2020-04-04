@@ -19,8 +19,6 @@ public class DishPair {
 	public void setCount(int count) {
 		this.count = count;
 	}
-
-
 	@Override
 	public String toString() {
 		return name +

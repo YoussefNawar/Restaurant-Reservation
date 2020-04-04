@@ -12,12 +12,10 @@ public class Order {
 		this.plateList = new ArrayList<>();
 		this.price = 0;
 	}
-
 	public Order(ArrayList<DishPair> plateList, float price) {
 		this.plateList = plateList;
 		this.price = price;
 	}
-
 	public	void addDish(String name) {
 		for (DishPair e : this.plateList) {
 			if (e.getName().equals(name)) {
@@ -27,22 +25,18 @@ public class Order {
 		}
 		this.plateList.add(new DishPair(name,1));
 	}
-    
 	public void removeDish(String name) {
 		for (DishPair e : this.plateList) {
 			if (e.getName().equals(name))
 				e.setCount(e.getCount() - 1);
 		}
 	}
-
 	public ArrayList <DishPair> getPlateList() {
 		return plateList;
 	}
-	
 	public float getPrice() {
 		return price;
 	}
-
 	void totalPrice() {
 		for(DishPair e : this.plateList) {
 			for(Dish x : Main.r.getListOfDishes()) {
@@ -53,7 +47,6 @@ public class Order {
 		}
 		
 	}
-
 	@Override
 	public String toString() {
 		return " Order :"
@@ -61,7 +54,6 @@ public class Order {
 				", Total Price=" + price
 				;
 	}
-
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

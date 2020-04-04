@@ -21,11 +21,9 @@ import java.util.Date;
 import Main.*;
 
 public class FileAccessWrite {
-
     private String outputFile;
     private static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     private static DocumentBuilder documentBuilder;
-
     static {
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -33,13 +31,11 @@ public class FileAccessWrite {
             e.printStackTrace();
         }
     }
-
     static Document dom = documentBuilder.newDocument();
 
     public FileAccessWrite(String outputFile) {
         this.outputFile = outputFile;
     }
-
     public void save(Restaurant r) throws ParserConfigurationException {
         Element rootEle = dom.createElement("Restaurant");
         Element e = dom.createElement("users");
@@ -84,9 +80,7 @@ public class FileAccessWrite {
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }
-
         }
-
     public static Element userCreate(User e) {
         Element eus = dom.createElement("user");
         Element name = dom.createElement("name");
@@ -103,9 +97,7 @@ public class FileAccessWrite {
         eus.appendChild(password);
         return eus;
     }
-
     public static Element tableCreate(Table e) {
-
         Element eus = dom.createElement("table");
         Element number = dom.createElement("number");
         number.appendChild(dom.createTextNode( String.valueOf(e.getId())));
@@ -118,7 +110,6 @@ public class FileAccessWrite {
         eus.appendChild(smoking);
         return eus;
     }
-
     public static Element dishCreate(Dish e) {
 
         Element eus = dom.createElement("dish");
@@ -133,7 +124,6 @@ public class FileAccessWrite {
         eus.appendChild(type);
         return eus;
     }
-
     public static Element reservationCreate(Reservation e) {
         Element eus = dom.createElement("reservation");
 

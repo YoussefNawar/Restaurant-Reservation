@@ -1,15 +1,19 @@
 package Main;
 
+import GUI.LoginScene;
 import GUI.ReservationScene;
-import Logic.Customer;
-import Logic.FileAccess;
-import Logic.Restaurant;
+import Logic.*;
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import javax.xml.parsers.ParserConfigurationException;
+import java.text.DateFormat;
 import java.text.ParseException;
-
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 
 public class Main extends Application {
@@ -21,23 +25,18 @@ public class Main extends Application {
         /**
          * @param args
          */
-        public static void main(String[] args) throws ParseException {
-            Customer e = (Customer) r.getListOfUsers().get(1);
-
-
-		launch(args);
+        public static void main(String[] args) throws ParseException, ParserConfigurationException {
+            launch(args);
+            new FileAccessWrite("file.xml").save(r);
         }
 
 
     @Override
     public void start(Stage primaryStage) {
-        //primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         Image img = new Image("logo.jpg");
-        // LoginScene lol = new LoginScene(primaryStage,r);
-//        CustomerScene cs = new CustomerScene(primaryStage,(Customer)r.getListOfUsers().get(2));
-//          System.out.println(r.getListOfUsers().size());
-        ReservationScene mn = new ReservationScene(primaryStage, r.getListOfUsers().get(4), r.getListOfReservations());
-        primaryStage.setScene(mn.getScene());
+        LoginScene lol = new LoginScene(primaryStage, r);
+        primaryStage.setScene(lol.getScene());
         primaryStage.getIcons().setAll(img);
         primaryStage.show();
     }

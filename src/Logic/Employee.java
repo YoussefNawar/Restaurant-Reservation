@@ -1,5 +1,7 @@
 package Logic;
 
 public interface Employee {
-    public void setReservationstate(Reservation x);
+     void setReservationstate(Reservation x);
+     String getChange() ;
+
 }
