@@ -84,7 +84,6 @@ public class LoginScene {
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(8);
 
-
         HBox hBox = new HBox();
         hBox.getChildren().addAll(Usernamelabel, UserTextField);
         hBox.setSpacing(8);
@@ -100,13 +99,11 @@ public class LoginScene {
         hBox2.setSpacing(8);
         hBox2.setAlignment(Pos.CENTER);
 
-
         ImageView imageView = new ImageView(new Image("logo.jpg"));
         imageView.setFitHeight(70);
         imageView.setFitWidth(70);
         vBox.getChildren().addAll(imageView, hBox, hBox1, validateLabel, sign, hBox2);
         layout.getChildren().add(vBox);
-
 
         SignUp.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -114,9 +111,7 @@ public class LoginScene {
                 SignUp signup = new SignUp();
                 signup.display(r);
             }
-
         });
-
 
         sign.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -137,14 +132,14 @@ public class LoginScene {
         for (User e : r.getListOfUsers()) {
             if ((Username.equals(e.getUsername())) && (Password.equals(e.getPassword()))) {
                 if (e.getRole().equals("Manager")) {
-                    ManScene m = new ManScene(this.stage, (Manager) e);
-                    stage.setScene(m.getScene());
+                  //  ManScene m = new ManScene(this.stage, (Manager) e);
+                  //  stage.setScene(m.getScene());
                 } else if (e.getRole().equals("Cook")) {
-                    CookScene cS = new CookScene(this.stage, (Cook) e);
-                    stage.setScene(cS.getScene());
+                 //   CookScene cS = new CookScene(this.stage, (Cook) e);
+                   // stage.setScene(cS.getScene());
                 } else if (e.getRole().equals("Waiter")) {
-                    WaiterScene w = new WaiterScene(this.stage, (Waiter) e);
-                    stage.setScene(w.getScene());
+                   // WaiterScene w = new WaiterScene(this.stage, (Waiter) e);
+                    //stage.setScene(w.getScene());
                 } else if (e.getRole().equals("Client")) {
                     CustomerScene c = new CustomerScene(this.stage, (Customer) e);
                     stage.setScene(c.getScene());

@@ -3,6 +3,7 @@ import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class Reservation {
 	private int seatNumber;
@@ -12,10 +13,9 @@ public class Reservation {
 	private boolean smoking;
 	private Order order;
 	private String name;
-	private boolean done;
+	private String state;
 
-
-	public Reservation(int seatNumber, int tableID, Date dateStart,Date dateEnd, boolean smoking, String name, Boolean done,Order o) {
+	public Reservation(int seatNumber, int tableID, Date dateStart,Date dateEnd, boolean smoking, String name, String state,Order o) {
 		super();
 		this.seatNumber = seatNumber;
 		this.tableID = tableID;
@@ -23,13 +23,12 @@ public class Reservation {
 		this.endingDate=dateEnd;
 		this.smoking = smoking;
 		this.name = name;
-		this.done = done;
+		this.state = state;
 		this.order = o;
 
 	}
 
-
-	public Reservation(int seatNumber, int tableID, Date dateStart,Date dateEnd, boolean smoking, String name, Boolean done) {
+	public Reservation(int seatNumber, int tableID, Date dateStart,Date dateEnd, boolean smoking, String name, String state) {
 		super();
 		this.seatNumber = seatNumber;
 		this.tableID = tableID;
@@ -37,13 +36,45 @@ public class Reservation {
 		this.endingDate=dateEnd;
 		this.smoking = smoking;
 		this.name = name;
-		this.done = done;
+		this.state = state;
 		this.order = new Order();
 
 	}
 
+	public int getSeatNumber() {
+		return seatNumber;
+	}
+
+	public int getTableID() {
+		return tableID;
+	}
+
+	public Date getStartingDate() {
+		return startingDate;
+	}
+
+	public Date getEndingDate() {
+		return endingDate;
+	}
+
+	public boolean isSmoking() {
+		return smoking;
+	}
+
 	public Order getOrder() {
 		return order;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setOrder(Order order) {
@@ -74,34 +105,6 @@ public class Reservation {
 		return check.after(date1) && check.before(date2);
 	}
 
-	public int getSeatNumber() {
-		return seatNumber;
-	}
-
-	public int getTableID() {
-		return tableID;
-	}
-
-	public Date getStartingDate() {
-		return startingDate;
-	}
-
-	public Date getEndingDate() {
-		return endingDate;
-	}
-
-	public boolean isSmoking() {
-		return smoking;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public boolean isDone() {
-		return done;
-	}
-
 	@Override
 	public String toString() {
 		return "Reservation:" +
@@ -112,7 +115,23 @@ public class Reservation {
 				", Smoking?" + smoking +"\n"
 				 +order.toString() +
 				", Mr." + name  +
-				", Done?" + done
+				", State" + state
 				;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Reservation that = (Reservation) o;
+		return seatNumber == that.seatNumber &&
+				tableID == that.tableID &&
+				smoking == that.smoking &&
+				Objects.equals(startingDate, that.startingDate) &&
+				Objects.equals(endingDate, that.endingDate) &&
+				Objects.equals(order, that.order) &&
+				Objects.equals(name, that.name) &&
+				Objects.equals(state, that.state);
+	}
+
 }

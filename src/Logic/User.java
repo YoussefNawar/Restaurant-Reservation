@@ -1,9 +1,13 @@
 package Logic;
+
+import java.util.Objects;
+import Main.*;
+
 /**
  * @author Youssef
  *
  */
-public class User {
+public abstract class User {
 	private String name;
 	private String role;
 	private String username;
@@ -37,10 +41,6 @@ public class User {
 		return role;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public String getUsername() {
 		return username;
 	}
@@ -57,4 +57,18 @@ public class User {
 		this.password = password;
 	}
 
+	public void showReservations(){
+		System.out.println(Main.r.getUserMap().get(this.getName()).toString());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		User user = (User) o;
+		return Objects.equals(name, user.name) &&
+				Objects.equals(role, user.role) &&
+				Objects.equals(username, user.username) &&
+				Objects.equals(password, user.password);
+	}
 }

@@ -25,6 +25,12 @@
             <username>george</username>
             <password>k6987_#LpQ</password>
         </user>
+        <user>
+            <name>Tomas Hobbens</name>
+            <role>Cooker</role>
+            <username>hobbens_tom</username>
+            <password>cooker_pass</password>
+        </user>
     </users>
     <tables>
         <table>
@@ -102,28 +108,28 @@
     </dishes>
     <reservations>
         <reservation>
-            <number_of_seats>5</number_of_seats>
-            <name>Brian Johnes</name>
-            <startingdate>13:00 12/12/2012</startingdate>
-            <endingdate>14:00 12/12/2012</endingdate>
+            <number_of_seats>4</number_of_seats>
+            <name>John Doe</name>
+            <startingdate>13:00 13/12/2017</startingdate>
+            <endingdate>14:00 13/12/2017</endingdate>
             <smoking>true</smoking>
-            <done>false</done>
+            <state>pending</state>
             <tableId>1</tableId>
             <order>
-                <dishe>Grilled Chicken</dishe>
+                <dishe>Greek Salade</dishe>
+                <quantity>2</quantity>
+                <dishe>Fried Potatos</dishe>
                 <quantity>1</quantity>
-                <dishe>Apple Pie</dishe>
-                <quantity>1</quantity>
-                <totalPrice>125.0</totalPrice>
+                <totalPrice>100.0</totalPrice>
             </order>
         </reservation>
         <reservation>
-            <number_of_seats>4</number_of_seats>
+            <number_of_seats>5</number_of_seats>
             <name>John Doe</name>
-            <startingdate>13:00 12/12/2012</startingdate>
-            <endingdate>14:00 12/12/2012</endingdate>
+            <startingdate>13:00 15/12/2012</startingdate>
+            <endingdate>14:00 15/12/2012</endingdate>
             <smoking>true</smoking>
-            <done>false</done>
+            <state>false</state>
             <tableId>1</tableId>
             <order>
                 <dishe>Mushroom Soup</dishe>
