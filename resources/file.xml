@@ -28,8 +28,8 @@
         <user>
             <name>Tomas Hobbens</name>
             <role>Cooker</role>
-            <username>y</username>
-            <password>y</password>
+            <username>hobbens_tom</username>
+            <password>cooker_pass</password>
         </user>
     </users>
     <tables>
@@ -108,25 +108,21 @@
     </dishes>
     <reservations>
         <reservation>
-            <number_of_seats>12</number_of_seats>
+            <number_of_seats>4</number_of_seats>
             <name>John Doe</name>
-            <startingdate>19:00 05/04/2020</startingdate>
-            <endingdate>19:30 05/04/2020</endingdate>
-            <smoking>false</smoking>
-            <state>ready</state>
-            <tableId>2</tableId>
+            <startingdate>21:00 05/04/2020</startingdate>
+            <endingdate>22:00 05/04/2020</endingdate>
+            <smoking>true</smoking>
+            <state>served</state>
+            <tableId>5</tableId>
             <order>
                 <dishe>Greek Salade</dishe>
-                <quantity>2</quantity>
+                <quantity>1</quantity>
                 <dishe>Fried Potatos</dishe>
                 <quantity>1</quantity>
                 <dishe>Grilled Chicken</dishe>
                 <quantity>1</quantity>
-                <dishe>Mushroom Soup</dishe>
-                <quantity>1</quantity>
-                <dishe>Beef Steak</dishe>
-                <quantity>1</quantity>
-                <totalPrice>315.0</totalPrice>
+                <totalPrice>157.75</totalPrice>
             </order>
         </reservation>
     </reservations>

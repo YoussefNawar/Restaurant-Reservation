@@ -55,7 +55,12 @@ public class Order {
 		for(DishPair e : this.plateList) {
 			for(Dish x : Main.r.getListOfDishes()) {
 				if (e.getName().equals(x.getName())) {
-					price += e.getCount()*x.getPrice();
+					if(x.getType().equals("appetizer"))
+						price += e.getCount()*(x.getPrice()*1.1);
+					if(x.getType().equals("main_course"))
+						price += e.getCount()*(x.getPrice()*1.15);
+					if(x.getType().equals("desert"))
+						price += e.getCount()*(x.getPrice()*1.2);
 				}
 			}
 		}

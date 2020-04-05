@@ -1,7 +1,6 @@
 package Logic;
 
 import java.util.Objects;
-import Main.*;
 
 /**
  * @author Youssef
@@ -12,10 +11,6 @@ public abstract class User {
 	private String role;
 	private String username;
 	private String password;
-
-	public User() {
-		super();
-	}
 
 	@Override
 	public String toString() {
@@ -49,9 +44,7 @@ public abstract class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void showReservations(){
-		System.out.println(Main.r.getUserMap().get(this.getName()).toString());
-	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;

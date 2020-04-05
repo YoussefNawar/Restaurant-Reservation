@@ -117,7 +117,7 @@ public class MenuScene {
         count.setText(c.getCurrentReservation().getOrder().getCount(dishname)+"");
         cart = new Cart(c.getCurrentReservation()).createCart();
         ObservableList<Node> x = menu.getChildren();
-        max=x.size();
+        max=5;
         if (x.size() > max && c.getCurrentReservation().getOrder().getPlateList().size() == 0) {
             x.remove(x.get(x.size() - 1));
         } else {

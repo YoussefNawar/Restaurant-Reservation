@@ -42,7 +42,6 @@ public class FileAccessWriteTest {
         Assertions.assertEquals(fileAccess.getUser(),userArrayList);
     }
 
-
     @Test
     void createAndReadReservationList() throws ParserConfigurationException {
         fileAccess = new FileAccess(fileName);

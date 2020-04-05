@@ -62,9 +62,7 @@ public class Restaurant  {
 	public MultiMap getUserMap() {
 		return userMap;
 	}
-	public MultiMap getTableMap() {
-		return tableMap;
-	}
+
 	public boolean checkReservationTime(Date startTime, Date endTime , int id){
 			List X;
 			int j=1;

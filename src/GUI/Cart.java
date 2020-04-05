@@ -37,7 +37,7 @@ public class Cart {
             tableView.getItems().add(dishPair);
         }
         HBox totalPrice = new HBox();
-        totalPrice.getChildren().addAll(new Label("Total Price : "), new Label(reservation.getOrder().getPrice() + "$"));
+        totalPrice.getChildren().addAll(new Label("Total Price subjected to taxes : "), new Label(reservation.getOrder().getPrice() + "$"));
         vBox.getChildren().add(totalPrice);
         VBox newV = new VBox();
         DishPair dishPair = new DishPair("Total Price" , (int) reservation.getOrder().getPrice());

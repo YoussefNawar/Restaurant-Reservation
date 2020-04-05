@@ -100,7 +100,6 @@ public class SignUp {
                     validateLabel.setStyle("-fx-text-fill: #1a1100");
                 } else {
                     r.addUser(x, y, z);
-
                     window.close();
                 }
             }
