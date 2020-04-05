@@ -1,0 +1,38 @@
+Restaurant Reservation System
+This Project was designed by:
+1-	Youssed Nawar ID->6602.
+2-	Abdelrahman Hisham ID->6529.
+Labour done by:
+1-	Youssef(6602):
+-Taking full responsibility for the logic section of the project, through coming up with a class named Restaurant which includes arraylists for all the components of the project, the users, the reservations, the tables and the dishes, which were loaded from the xml file. As well as using inheritance in creating all the employees classes and the customer class which all inherit a User class.
+-In addition, he defined a way to check whether a table is available or not by arranging them according to seat numbers of each table , and then if the is less than the wanted number of seats or equal, then checks whether it allows smoking or not. If these requirements are met, then add reserevation method is invoked which checks the availability of any of the tables, and the dates.
+-Creating a DishPair class which allows the user to choose a certain dish multiple times as well as showing the number of times it was chosen.
+-Creating an arraylist for plates in Order class, as well as creating a method to check whether the order is done or not.
+Contributions in Gui section:
+-	Coming up with the idea to use one scene for all the employees showing certain info according to the type of employee logged in the system, Saving the time of creating  two additional scenes .
+-	Creating multiple layouts in the Customer scene that are invoked in the same scene. By doing that it eases the experience of the customer, making it simple and easy to track.
+-	Creating the menu scene which included all the meals available in the restaurant, and as it was created dynamically, it allowed the addition or removal of any of the dishes.
+-	Using the ENTER key as substitute for the sign in button during login scene .
+
+2-Abdelrahman (6529):
+Taking responsibility for executing and creating the gui section of the project .
+-	Creating the login scene which loops through the arraylist of users and compares the entered username to the username of the users, and see which role matches the entered username, and according to that switching scenes to a certain employee or customer.
+-	Coming up and executing  the idea to use a treeview representation of all employees that shows certain types of info according to the type of employee whilst keeping certain branches in all scenes, like the tables ID’S and plates list in all scenes. But , for example, showing the customer name for manager and waiter but not for the cook. Each reservation and their matching number was used as the root of the tree.
+-	Creating the Customer details scene which showed basic info of the customer like name, username, and password, as well as allowing the customer to change his password.
+-	Creating the logo and overall background during login phase to provide a more friendly experience for the user.
+-	Contributions in Logic section->Creating an interface which is implemented by all employees to check the state of the reservation, as well as getting the change from the customer. Both methods were created to obtain such things.
+
+--------------------------------------------------------------------------------------------------------------------------------
+Assumptions:
+-	A customer can make reservations anytime of the day but cannot be lese than 30 minutes or exceeds 2 hours
+-       multiple reservations can be made in the same day
+
+Features:
+-	Adding a sign up feature which allows the creation of a new account for any type of user in the system .
+-	Reserving using dates and times available then checking available tables in the restaurant
+-	Allowing the customer to check all the details of any previous Reservations in any certain date.
+-	Allowing the waiter and the cook to check on the state of the orders whether its done or not.
+
+
+Thank You
+
