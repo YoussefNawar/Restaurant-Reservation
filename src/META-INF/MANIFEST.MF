@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: 
-Class-Path: junit.jar groovy-all-2.4.17.jar
+Main-Class: Main.Main
 
