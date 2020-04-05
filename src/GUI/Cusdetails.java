@@ -24,14 +24,12 @@ import javafx.stage.Stage;
 
 
 public class Cusdetails {
-    Customer c;
-    VBox layout;
+    private Customer c;
+    private VBox layout;
 
     public Cusdetails(Customer c) {
         this.c = c;
         preparescene();
-
-
     }
 
     public void preparescene() {
@@ -60,19 +58,19 @@ public class Cusdetails {
         confirm.setStyle("-fx-background-color: #ffc966");
         confirm.setVisible(false);
         Label oldPassword = new Label();
-        TextField oldPasswordText = new TextField();
-        oldPasswordText.setVisible(false);
+        TextField oldPaswordField = new TextField();
+        oldPaswordField.setVisible(false);
         Label newPassword = new Label();
         TextField newPasswordField = new TextField();
         newPasswordField.setVisible(false);
-        TextField confirmPasswordText = new TextField();
-        confirmPasswordText.setVisible(false);
+        TextField confirmPasswordField = new TextField();
+        confirmPasswordField.setVisible(false);
         Label confirmPassword = new Label();
         h3.getChildren().addAll(newPassword,newPasswordField);
         h3.setAlignment(Pos.CENTER_LEFT);
-        h4.getChildren().addAll(oldPassword,oldPasswordText);
+        h4.getChildren().addAll(oldPassword,oldPaswordField);
         h4.setAlignment(Pos.CENTER_LEFT);
-        h5.getChildren().addAll(confirmPassword,confirmPasswordText);
+        h5.getChildren().addAll(confirmPassword,confirmPasswordField);
         h5.setAlignment(Pos.CENTER_LEFT);
 
         VBox v = new VBox();
@@ -83,23 +81,20 @@ public class Cusdetails {
         v.setStyle("-fx-background-color: #ffffe6");
 
         confirm.setOnAction(e -> {
-            if (oldPasswordText.getText()==c.getPassword()&&newPasswordField.getText()==confirmPasswordText.getText()){
+            if ((oldPaswordField.getText().equals(c.getPassword())) &&
+                    (newPasswordField.getText().equals(confirmPasswordField.getText()))) {
                 c.setPassword(newPasswordField.getText());
                 newPassword.setVisible(false);
                 confirmPassword.setVisible(false);
                 oldPassword.setVisible(false);
-                confirmPasswordText.setVisible(false);
-                oldPasswordText.setVisible(false);
+                confirmPasswordField.setVisible(false);
+                oldPaswordField.setVisible(false);
                 newPasswordField.setVisible(false);
                 confirm.setVisible(false);
-
-            }else{
-                if(!(oldPasswordText.getText()==c.getPassword())){
-                    error.setText("Invalid old password");
-                }else{
-                    error.setText("Confirm password is not correct");
-                }
-
+            } else if (!(oldPaswordField.getText().equals(c.getPassword()))) {
+                error.setText("Invalid old password");
+            } else {
+                error.setText("Passwords entered are incorrect");
             }
         });
         newp.setOnAction(new EventHandler<ActionEvent>() {
@@ -108,8 +103,8 @@ public class Cusdetails {
                 newPassword.setText("New password  :");
                 confirmPassword.setText("Confirm password  :");
                 oldPassword.setText("Old password  :");
-                confirmPasswordText.setVisible(true);
-                oldPasswordText.setVisible(true);
+                confirmPasswordField.setVisible(true);
+                oldPaswordField.setVisible(true);
                 newPasswordField.setVisible(true);
                 confirm.setVisible(true);
             }

@@ -24,12 +24,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ReservationScene {
-    Scene scene;
-    Stage stage;
-    LoginScene l;
-    User u;
-    ArrayList<Reservation> reservationArrayList;
-    TreeView<String> tree;
+    private Scene scene;
+    private Stage stage;
+    private LoginScene l;
+    private User u;
+    private ArrayList<Reservation> reservationArrayList;
+    private TreeView<String> tree;
 
     public ReservationScene(User e, ArrayList<Reservation> reservationArrayList) {
         this.u = e;
@@ -47,6 +47,9 @@ public class ReservationScene {
     public void prepareScene() {
         VBox layout = new VBox();
         if (this.reservationArrayList.size() == 0) {
+            if (u.getRole() == "Manager") this.stage.setTitle("Manager");
+            if (u.getRole() == "Waiter") this.stage.setTitle("Waiter");
+            if (u.getRole() == "Cooker") this.stage.setTitle("Cook");
             Label label2 = new Label("No Reservations for Today");
             label2.setFont(new Font("Arial", 16));
             layout.setAlignment(Pos.BASELINE_CENTER);
@@ -159,8 +162,6 @@ public class ReservationScene {
     }
 
     public void validateReservations(ArrayList<Reservation> reservationArrayList) {
-        if (u.getRole() == "Client") this.reservationArrayList = reservationArrayList;
-        else {
             this.reservationArrayList = new ArrayList<>();
             for (Reservation res : reservationArrayList) {
                 Date today = Calendar.getInstance().getTime();
@@ -170,4 +171,4 @@ public class ReservationScene {
             }
         }
     }
-}
+

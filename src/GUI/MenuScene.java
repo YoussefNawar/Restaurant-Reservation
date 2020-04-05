@@ -15,11 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class MenuScene {
-    Restaurant r;
-    VBox menu;
-    Customer c;
-    VBox cart ;
-    int max = 5;
+    private Restaurant r;
+    private VBox menu;
+    private Customer c;
+    private VBox cart ;
+    private int max = 5;
 
 
     public MenuScene(Restaurant r, Customer c) {

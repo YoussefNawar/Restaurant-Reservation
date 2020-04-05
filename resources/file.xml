@@ -106,38 +106,4 @@
             <type>main_course</type>
         </dish>
     </dishes>
-    <reservations>
-        <reservation>
-            <number_of_seats>4</number_of_seats>
-            <name>John Doe</name>
-            <startingdate>13:00 03/04/2020</startingdate>
-            <endingdate>14:00 03/04/2020</endingdate>
-            <smoking>true</smoking>
-            <state>served</state>
-            <tableId>1</tableId>
-            <order>
-                <dishe>Greek Salade</dishe>
-                <quantity>2</quantity>
-                <dishe>Fried Potatos</dishe>
-                <quantity>1</quantity>
-                <totalPrice>100.0</totalPrice>
-            </order>
-        </reservation>
-        <reservation>
-            <number_of_seats>12</number_of_seats>
-            <name>John Doe</name>
-            <startingdate>13:00 15/12/2012</startingdate>
-            <endingdate>14:00 15/12/2012</endingdate>
-            <smoking>true</smoking>
-            <state>pending</state>
-            <tableId>3</tableId>
-            <order>
-                <dishe>Mushroom Soup</dishe>
-                <quantity>1</quantity>
-                <dishe>Molten Cake</dishe>
-                <quantity>1</quantity>
-                <totalPrice>120.0</totalPrice>
-            </order>
-        </reservation>
-    </reservations>
 </Restaurant>

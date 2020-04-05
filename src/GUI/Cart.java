@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Cart {
-    Reservation reservation;
+    private Reservation reservation;
     public Cart(Reservation reservation) {
         this.reservation = reservation;
     }

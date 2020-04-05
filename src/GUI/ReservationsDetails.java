@@ -23,13 +23,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ReservationsDetails {
-    Customer customer;
-    Restaurant restaurant;
-    VBox layout;
-    int i = 0;
-    String smoking;
-    BorderPane borderPane;
-    Stage stage;
+    private Customer customer;
+    private Restaurant restaurant;
+    private VBox layout;
+    private int i = 0;
+    private String smoking;
+    private BorderPane borderPane;
+    private Stage stage;
 
     public ReservationsDetails(Customer customer, Restaurant restaurant, BorderPane borderPane) throws ParseException {
         this.customer = customer;
@@ -123,7 +123,7 @@ public class ReservationsDetails {
 
         proceed.setOnAction(e -> {
             try {
-                String day = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+                String day = datePicker.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 String day1 = startTimeField.getText() + " " + day;
                 String day2 = endTimeField.getText() + " " + day;
                 Date a = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse(day1);
@@ -186,6 +186,7 @@ public class ReservationsDetails {
             @Override
             public void handle(ActionEvent event) {
                 customer.saveReservation();
+                borderPane.setCenter(layout);
             }
         });
         borderPane.setCenter(vBox);

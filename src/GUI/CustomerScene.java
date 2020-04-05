@@ -19,11 +19,11 @@ import java.util.ArrayList;
 
 
 public class CustomerScene {
-    Stage stage ;
-    Scene scene;
-    Restaurant restaurant;
-    LoginScene l ;
-    Customer c;
+    private Stage stage ;
+    private Scene scene;
+    private Restaurant restaurant;
+    private LoginScene l ;
+    private Customer c;
 
     public CustomerScene(Stage stage , Customer e, Restaurant restaurant){
         this.c = e;

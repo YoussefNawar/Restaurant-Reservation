@@ -19,12 +19,12 @@ import javafx.stage.Stage;
 
 
 public class LoginScene {
-    Scene scene;
-    Stage stage;
-    Restaurant r;
-    TextField UserTextField;
-    PasswordField PasswordField;
-    Label validateLabel;
+    private Scene scene;
+    private Stage stage;
+    private Restaurant r;
+    private TextField UserTextField;
+    private PasswordField PasswordField;
+    private Label validateLabel;
 
 
     public LoginScene(Stage stage, Restaurant r) {
