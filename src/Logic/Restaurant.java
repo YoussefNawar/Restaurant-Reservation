@@ -45,7 +45,7 @@ public class Restaurant  {
 		
 	}
 	public int checkAvailable(int seatNumber, Date dateStart, Date dateEnd, boolean smoking){
-		int j=0;
+		int j=-1;
 		Collections.sort(listOfTables, new Comparator<Table>() {
 			@Override
 			public int compare(Table o1, Table o2) {

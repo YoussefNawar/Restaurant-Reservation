@@ -3,6 +3,7 @@ package Logic;
 public class DishPair {
 	private String name;
 	private int count;
+
 	public DishPair(String name, int count) {
 		this.name = name;
 		this.count = count;

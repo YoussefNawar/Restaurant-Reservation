@@ -17,13 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class FileAccess {
-    private String filename;
     private static DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
     private static DocumentBuilder dbuild;
     static Document doc;
 
     public FileAccess(String outputFile) {
-        this.filename = outputFile;
         {
             try {
                 dbuild = dbfact.newDocumentBuilder();
@@ -33,14 +31,13 @@ public class FileAccess {
         }
         {
             try {
-                doc = dbuild.parse(new File("resources/" + filename));
-            } catch (SAXException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+                doc = dbuild.parse(new File("resources/" + outputFile));
+            } catch (SAXException | IOException e) {
                 e.printStackTrace();
             }
         }
     }
+
     public ArrayList<User> getUser() {
         ArrayList<User> userList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("user");
@@ -52,27 +49,32 @@ public class FileAccess {
                 String b = eElement.getElementsByTagName("role").item(0).getTextContent();
                 String c = eElement.getElementsByTagName("username").item(0).getTextContent();
                 String d = eElement.getElementsByTagName("password").item(0).getTextContent();
-                if (b.equals("Manager")) {
-                    Manager x = new Manager(a, c, d);
-                    userList.add(x);
-                    continue;
-                } else if (b.equals("Client")) {
-                    Customer x = new Customer(a, c, d);
-                    userList.add(x);
-                    continue;
-                } else if (b.equals("Waiter")) {
-                    Waiter x = new Waiter(a, c, d);
-                    userList.add(x);
-                    continue;
-                } else if (b.equals("Cooker")) {
-                    Cook x = new Cook(a, c, d);
-                    userList.add(x);
-                    continue;
+                switch (b) {
+                    case "Manager": {
+                        Manager x = new Manager(a, c, d);
+                        userList.add(x);
+                        continue;
+                    }
+                    case "Client": {
+                        Customer x = new Customer(a, c, d);
+                        userList.add(x);
+                        continue;
+                    }
+                    case "Waiter": {
+                        Waiter x = new Waiter(a, c, d);
+                        userList.add(x);
+                        continue;
+                    }
+                    case "Cooker": {
+                        Cook x = new Cook(a, c, d);
+                        userList.add(x);
+                    }
                 }
             }
         }
         return userList;
     }
+
     public ArrayList<Table> getTables() {
         ArrayList<Table> tableList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("table");
@@ -81,15 +83,15 @@ public class FileAccess {
             if (nNode instanceof Element) {
                 Element eElement = (Element) nNode;
                 Table e = new Table(
-                        Integer.valueOf(eElement
+                        Integer.parseInt(eElement
                                 .getElementsByTagName("number")
                                 .item(0)
                                 .getTextContent())
-                        , Integer.valueOf(eElement
+                        , Integer.parseInt(eElement
                         .getElementsByTagName("number_of_seats")
                         .item(0)
                         .getTextContent())
-                        , Boolean.valueOf(eElement
+                        , Boolean.parseBoolean(eElement
                         .getElementsByTagName("smoking")
                         .item(0)
                         .getTextContent()));
@@ -100,6 +102,7 @@ public class FileAccess {
         }
         return tableList;
     }
+
     public ArrayList<Dish> getDishes() {
         ArrayList<Dish> dishList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("dish");
@@ -111,7 +114,7 @@ public class FileAccess {
                         eElement.getElementsByTagName("name")
                                 .item(0)
                                 .getTextContent()
-                        , Integer.valueOf(eElement
+                        , Integer.parseInt(eElement
                         .getElementsByTagName("price")
                         .item(0)
                         .getTextContent())
@@ -123,6 +126,7 @@ public class FileAccess {
         }
         return dishList;
     }
+
     public ArrayList<Reservation> getReservations() {
         ArrayList<Reservation> reservationList = new ArrayList<>();
         NodeList nlist = doc.getElementsByTagName("reservation");
@@ -139,9 +143,9 @@ public class FileAccess {
 
                 for (int j = 0; j < dlist.getLength(); j++) { // dish list
                     d.add(new DishPair(dlist.item(j).getTextContent()
-                            , Integer.valueOf(qlist.item(j).getTextContent())));
+                            , Integer.parseInt(qlist.item(j).getTextContent())));
                 }
-                Order o = new Order(d, Float.valueOf(total));
+                Order o = new Order(d, Float.parseFloat(total));
                 o.toString();
                 Reservation reservation = null;
                 try {
@@ -154,15 +158,16 @@ public class FileAccess {
         }
         return reservationList;
     }
+
     private Reservation createReservationNode(Element eElement, Order o) throws ParseException {
         assert eElement != null;
-        Integer a = Integer.valueOf(eElement.getElementsByTagName("number_of_seats").item(0).getTextContent());
-        Integer b = Integer.valueOf(eElement.getElementsByTagName("tableId").item(0).getTextContent());
+        int a = Integer.parseInt(eElement.getElementsByTagName("number_of_seats").item(0).getTextContent());
+        int b = Integer.parseInt(eElement.getElementsByTagName("tableId").item(0).getTextContent());
         String start = eElement.getElementsByTagName("startingdate").item(0).getTextContent();
         Date c = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse(start);
         String end = eElement.getElementsByTagName("endingdate").item(0).getTextContent();
         Date e = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse(end);
-        Boolean f = Boolean.valueOf(eElement.getElementsByTagName("smoking").item(0).getTextContent());
+        boolean f = Boolean.parseBoolean(eElement.getElementsByTagName("smoking").item(0).getTextContent());
         String g = eElement.getElementsByTagName("name").item(0).getTextContent();
         String h = eElement.getElementsByTagName("state").item(0).getTextContent();
         return new Reservation(a, b, c, e, f, g, h, o);

@@ -1,4 +1,5 @@
 package GUI;
+
 import Logic.Customer;
 import Logic.Dish;
 import Logic.Order;
@@ -23,86 +24,101 @@ import javafx.stage.Stage;
 
 
 public class Cusdetails {
+    Customer c;
+    VBox layout;
 
-Customer c ;
-Scene scene ;
-Stage stage ;
-String s ;
-String e ;
-public Cusdetails(Stage stage ,Customer c){
-    this.stage=stage ;
-    this.stage.setTitle("Details");
-    this.c=c ;
-    preparescene();
+    public Cusdetails(Customer c) {
+        this.c = c;
+        preparescene();
 
 
-}
-public void preparescene(){
-    HBox h1=new HBox();
-    HBox h2 =new HBox();
-    HBox h3=new HBox();
-            Label UserLabel=new Label("Username : ");
-            Label PasswordLabel=new Label("Password");
-
-    TextField UserField=new TextField();
-    TextField PassField=new TextField();
-    Button newp=new Button("Change Password");
-    UserField.setText(c.getUsername());
-    PassField.setText(c.getPassword());
-    newp.setOnAction(new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent event) {
-            TextField newpassword=new TextField();
-           // newpassword.setText(c.setPassword(s));
-
-            h3.getChildren().add(newpassword);
-        }
-    });
-    h1.getChildren().addAll(UserLabel,UserField);
-    h2.getChildren().addAll(PasswordLabel,PassField);
-    VBox v=new VBox();
-    v.getChildren().addAll(h1,h2,newp,h3);
-    scene=new Scene(v,250,250);
-}
-    public Scene getScene() {
-        return this.scene;
     }
 
+    public void preparescene() {
+        HBox h1 = new HBox();
+        HBox h3 = new HBox();
+        HBox h4 = new HBox();
+        HBox h5 = new HBox();
+        Label UserLabel = new Label("Username : ");
+        Label userName = new Label(c.getUsername());
 
+        Label error = new Label();
 
+        Label fullName = new Label("Full name : ");
+        Label fullNametext = new Label(c.getName());
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(fullName,fullNametext);
+        hBox.setAlignment(Pos.CENTER_LEFT);
 
+        Button newp = new Button("Change Password");
+        newp.setStyle("-fx-background-color: #ffc966");
 
+        h1.getChildren().addAll(UserLabel, userName);
+        h1.setAlignment(Pos.CENTER_LEFT);
 
+        Button confirm = new Button("Confirm");
+        confirm.setStyle("-fx-background-color: #ffc966");
+        confirm.setVisible(false);
+        Label oldPassword = new Label();
+        TextField oldPasswordText = new TextField();
+        oldPasswordText.setVisible(false);
+        Label newPassword = new Label();
+        TextField newPasswordField = new TextField();
+        newPasswordField.setVisible(false);
+        TextField confirmPasswordText = new TextField();
+        confirmPasswordText.setVisible(false);
+        Label confirmPassword = new Label();
+        h3.getChildren().addAll(newPassword,newPasswordField);
+        h3.setAlignment(Pos.CENTER_LEFT);
+        h4.getChildren().addAll(oldPassword,oldPasswordText);
+        h4.setAlignment(Pos.CENTER_LEFT);
+        h5.getChildren().addAll(confirmPassword,confirmPasswordText);
+        h5.setAlignment(Pos.CENTER_LEFT);
 
+        VBox v = new VBox();
+        v.getChildren().addAll(hBox,h1, newp,h4,h3,h5,confirm,error);
 
+        v.setSpacing(8);
+        v.setPadding(new Insets(10));
+        v.setStyle("-fx-background-color: #ffffe6");
 
+        confirm.setOnAction(e -> {
+            if (oldPasswordText.getText()==c.getPassword()&&newPasswordField.getText()==confirmPasswordText.getText()){
+                c.setPassword(newPasswordField.getText());
+                newPassword.setVisible(false);
+                confirmPassword.setVisible(false);
+                oldPassword.setVisible(false);
+                confirmPasswordText.setVisible(false);
+                oldPasswordText.setVisible(false);
+                newPasswordField.setVisible(false);
+                confirm.setVisible(false);
 
+            }else{
+                if(!(oldPasswordText.getText()==c.getPassword())){
+                    error.setText("Invalid old password");
+                }else{
+                    error.setText("Confirm password is not correct");
+                }
 
+            }
+        });
+        newp.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                newPassword.setText("New password  :");
+                confirmPassword.setText("Confirm password  :");
+                oldPassword.setText("Old password  :");
+                confirmPasswordText.setVisible(true);
+                oldPasswordText.setVisible(true);
+                newPasswordField.setVisible(true);
+                confirm.setVisible(true);
+            }
+        });
 
+        this.layout = v;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public VBox getLayout() {
+        return layout;
+    }
 }

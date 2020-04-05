@@ -26,18 +26,31 @@ public class Order {
 		this.plateList.add(new DishPair(name,1));
 	}
 	public void removeDish(String name) {
-		for (DishPair e : this.plateList) {
-			if (e.getName().equals(name))
+		for (int i = 0 ; i < plateList.size() ; i++ ) {
+			DishPair e = plateList.get(i);
+			if (e.getName().equals(name)){
 				e.setCount(e.getCount() - 1);
+			}
+			if ( e.getCount() == 0) {
+				plateList.remove(e);
+			}
 		}
 	}
 	public ArrayList <DishPair> getPlateList() {
 		return plateList;
 	}
 	public float getPrice() {
+		totalPrice();
 		return price;
 	}
+	public int getCount(String name){
+		for(DishPair x : this.getPlateList()){
+			if(x.getName()==name)return x.getCount();
+		}
+		return 0;
+	}
 	void totalPrice() {
+		price = 0 ;
 		for(DishPair e : this.plateList) {
 			for(Dish x : Main.r.getListOfDishes()) {
 				if (e.getName().equals(x.getName())) {

@@ -5,7 +5,8 @@ import Main.Main;
 import java.util.Date;
 
 public class Customer extends User {
-    private Reservation currentReservation;
+    private Reservation currentReservation ;
+
 
     public Customer(String name, String username, String password) {
         super(name, "Client", username, password);
@@ -19,7 +20,8 @@ public class Customer extends User {
         currentReservation.setOrder(currentOrder);
     }
     public void removeFromOrder(String dish) {
-        removeFromOrder(dish);
+        Order currentOrder = currentReservation.getOrder();
+        currentOrder.removeDish(dish);
     }
     public void saveReservation() {
         this.currentReservation.getOrder().totalPrice();

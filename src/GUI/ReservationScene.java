@@ -31,6 +31,12 @@ public class ReservationScene {
     ArrayList<Reservation> reservationArrayList;
     TreeView<String> tree;
 
+    public ReservationScene(User e, ArrayList<Reservation> reservationArrayList) {
+        this.u = e;
+        this.reservationArrayList = reservationArrayList;
+        prepareScene();
+    }
+
     public ReservationScene(Stage stage, User e, ArrayList<Reservation> reservationArrayList) {
         this.u = e;
         this.stage = stage;
@@ -40,11 +46,12 @@ public class ReservationScene {
 
     public void prepareScene() {
         VBox layout = new VBox();
-        if (reservationArrayList == null) {
+        if (this.reservationArrayList.size() == 0) {
             Label label2 = new Label("No Reservations for Today");
             label2.setFont(new Font("Arial", 16));
+            layout.setAlignment(Pos.BASELINE_CENTER);
             layout.getChildren().add(label2);
-            scene = new Scene(layout, 100, 100);
+            scene = new Scene(layout, 400, 410);
         } else {
             HBox hbox2 = new HBox();
             Label label3 = new Label("All reservations for today :");
@@ -69,8 +76,8 @@ public class ReservationScene {
                 hBox.setAlignment(Pos.BASELINE_CENTER);
                 layout.getChildren().add(hBox);
             }
-            scene = new Scene(layout, 400, 410);
 
+            scene = new Scene(layout, 400, 410);
         }
     }
 

@@ -136,7 +136,7 @@ public class LoginScene {
                     stage.setScene(res.getScene());
 
                 } else if (e.getRole().equals("Client")) {
-                    CustomerScene c = new CustomerScene(this.stage, (Customer) e);
+                    CustomerScene c = new CustomerScene(this.stage, (Customer) e,r);
                     stage.setScene(c.getScene());
                 }
                 } else {

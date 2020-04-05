@@ -1,52 +1,59 @@
 package GUI;
 
 import Logic.Customer;
-import Logic.Waiter;
-import javafx.event.EventHandler;
+import Logic.Restaurant;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.text.ParseException;
+import java.util.ArrayList;
+
 
 public class CustomerScene {
     Stage stage ;
     Scene scene;
+    Restaurant restaurant;
     LoginScene l ;
     Customer c;
 
-    public CustomerScene(Stage stage , Customer e){
+    public CustomerScene(Stage stage , Customer e, Restaurant restaurant){
         this.c = e;
         this.stage=stage ;
-        prepareScene();
+        this.restaurant=restaurant;
+        try {
+            prepareScene();
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
     }
-    public void prepareScene(){
+
+    public void prepareScene() throws ParseException {
+        BorderPane borderPane = new BorderPane();
         this.stage.setTitle("Customer");
         VBox vBox = new VBox();
         HBox hBox1= new HBox();
         hBox1.setAlignment(Pos.CENTER);
-        Button btn1 = new Button("Make a reservation");
-        btn1.setFont(new Font("Arial", 12));
-        btn1.setStyle("-fx-background-color: #ffe6b3");
+        Button userInfo = new Button("Account Info");
+        userInfo.setFont(new Font("Arial", 12));
+        userInfo.setStyle("-fx-background-color: #ffe6b3");
         hBox1.setStyle("-fx-background-color: #ffe6b3");
-        hBox1.getChildren().add(btn1);
+        hBox1.getChildren().add(userInfo);
         HBox hBox2= new HBox();
         hBox2.setAlignment(Pos.CENTER);
-        Button btn2 = new Button("View previous reservations");
-        btn2.setFont(new Font("Arial", 12));
-        btn2.setStyle("-fx-background-color: #ffe6b3");
+        Button previousReservations = new Button("View previous reservations");
+        previousReservations.setFont(new Font("Arial", 12));
+        previousReservations.setStyle("-fx-background-color: #ffe6b3");
         hBox2.setStyle("-fx-background-color: #ffe6b3");
-        hBox2.getChildren().add(btn2);
+        hBox2.getChildren().add(previousReservations);
 
         Separator separator = new Separator();
         separator.setOrientation(Orientation.HORIZONTAL);
@@ -59,28 +66,49 @@ public class CustomerScene {
 
         HBox hBox3= new HBox();
         hBox3.setAlignment(Pos.CENTER);
-        Button btn3 = new Button("User Info");
-        btn3.setFont(new Font("Arial", 12));
-        btn3.setStyle("-fx-background-color: #ffe6b3");
+        Button makeReservation = new Button("Make a reservation");
+        makeReservation.setFont(new Font("Arial", 12));
+        makeReservation.setStyle("-fx-background-color: #ffe6b3");
         hBox3.setStyle("-fx-background-color: #ffe6b3");
-        hBox3.getChildren().add(btn3);
+        hBox3.getChildren().add(makeReservation);
 
         vBox.setStyle("-fx-background-color: #ffe6b3");
         vBox.setPadding(new Insets(1));
-        vBox.getChildren().addAll(hBox3,separator,hBox1,separator1,hBox2,separator2);
-
-        AnchorPane anchorPane = new AnchorPane();
-        anchorPane.setStyle("-fx-background-color: #fff7e6");
-
-        BorderPane borderPane = new BorderPane();
+        vBox.getChildren().addAll(hBox1,separator,hBox3,separator1,hBox2,separator2);
         borderPane.setLeft(vBox);
-        borderPane.setCenter(anchorPane);
-        scene = new Scene(borderPane,600,350);
 
+        Cusdetails cusDetails = new Cusdetails(this.c);
+        borderPane.setCenter(cusDetails.getLayout());
 
+        makeReservation.setOnAction(e -> {
+            ReservationsDetails reservationsDetails = null;
+            try {
+                reservationsDetails = new ReservationsDetails(this.c,this.restaurant,borderPane);
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            borderPane.setCenter(reservationsDetails.getLayout());
+        });
+        userInfo.setOnAction(e -> borderPane.setCenter(cusDetails.getLayout()));
+        previousReservations.setOnAction(e->{
+              ArrayList x  = (ArrayList)restaurant.getUserMap().get(c.getName());
+            if (x.size()==0){
+                Label label = new Label("You have no previous reservations");
+                borderPane.setCenter(label);
+            }else{
+                ReservationScene reservationScene = new ReservationScene(c,x);
+                VBox vBox1 = new VBox();
+                vBox1.getChildren().add(reservationScene.getTree());
+                vBox1.setPadding(new Insets(10));
+                borderPane.setCenter(vBox1);
+            }
+        });
+
+        scene = new Scene(borderPane,600,500);
     }
+
     public Scene getScene() {
-        prepareScene();
+        //prepareScene();
         return this.scene;
     }
 

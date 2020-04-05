@@ -110,8 +110,8 @@
         <reservation>
             <number_of_seats>4</number_of_seats>
             <name>John Doe</name>
-            <startingdate>13:00 04/04/2020</startingdate>
-            <endingdate>14:00 04/04/2020</endingdate>
+            <startingdate>13:00 03/04/2020</startingdate>
+            <endingdate>14:00 03/04/2020</endingdate>
             <smoking>true</smoking>
             <state>served</state>
             <tableId>1</tableId>
