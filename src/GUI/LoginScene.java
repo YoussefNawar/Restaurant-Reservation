@@ -132,7 +132,7 @@ public class LoginScene {
             if ((Username.equals(e.getUsername())) && (Password.equals(e.getPassword()))) {
                 String x = e.getRole();
                 if (x=="Manager"||x=="Waiter"||x=="Cooker") {
-                    ReservationScene res = new ReservationScene(this.stage,e,r.getListOfReservations());
+                    ReservationScene res = new ReservationScene(this.stage,e,r);
                     stage.setScene(res.getScene());
 
                 } else if (e.getRole().equals("Client")) {

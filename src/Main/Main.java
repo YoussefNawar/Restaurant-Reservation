@@ -29,11 +29,6 @@ public class Main extends Application {
      * @param args
      */
     public static void main(String[] args) throws ParseException, ParserConfigurationException {
-//        Date start = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse("13:50 12/10/2017");
-//        Date end = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse("15:10 12/10/2017");
-//        long diff= Math.abs(start.getTime() - end.getTime());
-//        System.out.println(diff/60/1000);
-
         launch(args);
         new FileAccessWrite("file.xml").save(r);
     }

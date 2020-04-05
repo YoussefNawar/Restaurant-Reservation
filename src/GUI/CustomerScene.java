@@ -22,8 +22,8 @@ public class CustomerScene {
     private Stage stage ;
     private Scene scene;
     private Restaurant restaurant;
-    private LoginScene l ;
     private Customer c;
+    VBox userDetails;
 
     public CustomerScene(Stage stage , Customer e, Restaurant restaurant){
         this.c = e;
@@ -55,6 +55,16 @@ public class CustomerScene {
         hBox2.setStyle("-fx-background-color: #ffe6b3");
         hBox2.getChildren().add(previousReservations);
 
+        Button signOut = new Button("Sign out");
+        signOut.setStyle("-fx-background-color: #ffc966");
+        HBox hBox = new HBox();
+        hBox.getChildren().addAll(signOut);
+        hBox.setAlignment(Pos.CENTER);
+        signOut.setOnAction(e -> {
+            this.c = null;
+            stage.setScene(new LoginScene(stage, restaurant).getScene());
+        });
+
         Separator separator = new Separator();
         separator.setOrientation(Orientation.HORIZONTAL);
 
@@ -75,21 +85,26 @@ public class CustomerScene {
         vBox.setStyle("-fx-background-color: #ffe6b3");
         vBox.setPadding(new Insets(1));
         vBox.getChildren().addAll(hBox1,separator,hBox3,separator1,hBox2,separator2);
-        borderPane.setLeft(vBox);
+        vBox.setMinHeight(474);
+        VBox vBox4 = new VBox();
+        hBox.setStyle("-fx-background-color: #ffe6b3");
+        vBox4.getChildren().addAll(vBox,hBox);
+        borderPane.setLeft(vBox4);
 
         Cusdetails cusDetails = new Cusdetails(this.c);
-        borderPane.setCenter(cusDetails.getLayout());
+        this.userDetails =cusDetails.getLayout();
+        borderPane.setCenter(this.userDetails);
 
         makeReservation.setOnAction(e -> {
             ReservationsDetails reservationsDetails = null;
             try {
-                reservationsDetails = new ReservationsDetails(this.c,this.restaurant,borderPane);
+                reservationsDetails = new ReservationsDetails(this.c,this.restaurant,borderPane,this.userDetails);
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }
             borderPane.setCenter(reservationsDetails.getLayout());
         });
-        userInfo.setOnAction(e -> borderPane.setCenter(cusDetails.getLayout()));
+        userInfo.setOnAction(e -> borderPane.setCenter(this.userDetails));
         previousReservations.setOnAction(e->{
               ArrayList x  = (ArrayList)restaurant.getUserMap().get(c.getName());
             if (x.size()==0){

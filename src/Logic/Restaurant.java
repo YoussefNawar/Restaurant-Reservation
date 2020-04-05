@@ -65,7 +65,7 @@ public class Restaurant  {
 	public MultiMap getTableMap() {
 		return tableMap;
 	}
-	public boolean checkReservationTime(Date a, Date b , int id){
+	public boolean checkReservationTime(Date startTime, Date endTime , int id){
 			List X;
 			int j=1;
 			X = tableMap.get(id);
@@ -74,8 +74,10 @@ public class Restaurant  {
 				Reservation res = (Reservation) X.get(i);
 				Date start = res.getStartingDate();
 				Date end = res.getEndingDate();
-				if((b.before(end) && b.after(start) || b.equals(start))||
-						(a.before(end)&&(a.after(start)||a.equals(start)))) return false;
+				if((endTime.after(start) &&(endTime.before(end) || endTime.equals(end)))
+						||((startTime.before(end)&&(startTime.after(start)||startTime.equals(start))))
+						||(startTime.before(start)&&endTime.after(end)))
+				 return false;
 			}
 		return true;
 	}

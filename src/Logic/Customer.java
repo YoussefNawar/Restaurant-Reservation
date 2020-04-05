@@ -1,8 +1,7 @@
 package Logic;
 
-import Main.Main;
-
 import java.util.Date;
+import Main.Main;
 
 public class Customer extends User {
     private Reservation currentReservation ;

@@ -29,12 +29,13 @@ public class ReservationsDetails {
     private int i = 0;
     private String smoking;
     private BorderPane borderPane;
-    private Stage stage;
+    private VBox userInfo;
 
-    public ReservationsDetails(Customer customer, Restaurant restaurant, BorderPane borderPane) throws ParseException {
+    public ReservationsDetails(Customer customer, Restaurant restaurant, BorderPane borderPane,VBox userInfo) throws ParseException {
         this.customer = customer;
         this.restaurant = restaurant;
         this.borderPane = borderPane;
+        this.userInfo = userInfo;
         prepareScene();
     }
 
@@ -129,7 +130,7 @@ public class ReservationsDetails {
                 Date a = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse(day1);
                 Date b = new SimpleDateFormat("HH:mm dd/MM/yyyy").parse(day2);
                 int id = (restaurant.checkAvailable(i, a, b, Boolean.valueOf(this.smoking)));
-                if (valid(a, b, label1) && id != -1) {
+                if (valid(a, b, label1,id)) {
                     setMenu(id,a,b);
                 }
             } catch (ParseException ex) {
@@ -151,7 +152,7 @@ public class ReservationsDetails {
         return layout;
     }
 
-    private boolean valid(Date a, Date b, Label label) {
+    private boolean valid(Date a, Date b, Label label, int id ){
         Date today = Calendar.getInstance().getTime();
         if (b.before(a) || a.before(today) || checkDifference(a, b)) {
             label.setText("Please enter valid Time");
@@ -162,14 +163,16 @@ public class ReservationsDetails {
         } else if (smoking == null) {
             label.setText("Enter correct smoking preference");
             return false;
-        }
-        return true;
+        }else if( id == -1){
+            label.setText("Sorry no table available with selected preferences");
+            return false;
+        } else return true;
     }
 
     private boolean checkDifference(Date a, Date b) {
-        long diff = Math.abs(a.getTime() - b.getTime());
-        if (diff > 30 && diff < 120) return true;
-        return false;
+        long diff = Math.abs(b.getTime() - a.getTime());
+        diff = diff/(1000*60);
+        return !(diff <= 120 && diff >= 30) ;
     }
 
     public void setMenu(int id , Date a ,Date b ) {
@@ -180,13 +183,13 @@ public class ReservationsDetails {
         customer.createNewReservation(i, id, a, b, Boolean.valueOf(this.smoking));
         MenuScene menuScene = new MenuScene(restaurant, customer);
         VBox vBox1 =menuScene.getMenu();
-        vBox1.setMinHeight(480);
+        vBox1.setMinHeight(474);
         vBox.getChildren().addAll(vBox1,confirm);
         confirm.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 customer.saveReservation();
-                borderPane.setCenter(layout);
+                borderPane.setCenter(userInfo);
             }
         });
         borderPane.setCenter(vBox);

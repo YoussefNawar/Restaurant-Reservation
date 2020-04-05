@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -26,7 +25,7 @@ import java.util.Date;
 public class ReservationScene {
     private Scene scene;
     private Stage stage;
-    private LoginScene l;
+    private Restaurant restaurant;
     private User u;
     private ArrayList<Reservation> reservationArrayList;
     private TreeView<String> tree;
@@ -37,50 +36,56 @@ public class ReservationScene {
         prepareScene();
     }
 
-    public ReservationScene(Stage stage, User e, ArrayList<Reservation> reservationArrayList) {
+    public ReservationScene(Stage stage, User e, Restaurant restaurant) {
         this.u = e;
-        this.stage = stage;
-        validateReservations(reservationArrayList);
+        this.stage = stage;;
+        this.restaurant=restaurant;
+        validateReservations(restaurant.getListOfReservations());
         prepareScene();
     }
 
     public void prepareScene() {
         VBox layout = new VBox();
+        layout.setAlignment(Pos.CENTER);
+        Button signOut = new Button("Sign out");
+        signOut.setStyle("-fx-background-color: #ffc966");
+        signOut.setOnAction(e -> {
+            this.u = null;
+            stage.setScene(new LoginScene(stage,restaurant).getScene());
+        });
         if (this.reservationArrayList.size() == 0) {
-            if (u.getRole() == "Manager") this.stage.setTitle("Manager");
-            if (u.getRole() == "Waiter") this.stage.setTitle("Waiter");
-            if (u.getRole() == "Cooker") this.stage.setTitle("Cook");
+            if (u.getRole().equals("Manager")) this.stage.setTitle("Manager");
+            if (u.getRole().equals("Waiter")) this.stage.setTitle("Waiter");
+            if (u.getRole().equals("Cooker")) this.stage.setTitle("Cook");
             Label label2 = new Label("No Reservations for Today");
             label2.setFont(new Font("Arial", 16));
             layout.setAlignment(Pos.BASELINE_CENTER);
             layout.getChildren().add(label2);
+            layout.getChildren().add(signOut);
             scene = new Scene(layout, 400, 410);
         } else {
             HBox hbox2 = new HBox();
             Label label3 = new Label("All reservations for today :");
             label3.setFont(new Font("Arial", 16));
-            hbox2.setStyle("-fx-background-color :#ffffe6");
             hbox2.setAlignment(Pos.BASELINE_CENTER);
             hbox2.getChildren().add(label3);
             layout.getChildren().add(hbox2);
-            if (u.getRole() == "Manager") this.stage.setTitle("Manager");
-            if (u.getRole() == "Waiter") this.stage.setTitle("Waiter");
-            if (u.getRole() == "Cooker") this.stage.setTitle("Cook");
+            if (u.getRole().equals("Manager")) this.stage.setTitle("Manager");
+            if (u.getRole().equals("Waiter")) this.stage.setTitle("Waiter");
+            if (u.getRole().equals("Cooker")) this.stage.setTitle("Cook");
             tree = getTree();
             layout.getChildren().add(tree);
-            if (u.getRole() == "Manager") {
-                Manager x = (Manager) u;
+            if (u.getRole().equals("Manager")) {
                 HBox hBox = new HBox();
+                Manager x = (Manager) u;
                 Label label1 = new Label("Total amount of money today =" + x.getTotalMoney(reservationArrayList));
                 label1.setFont(new Font("Verdana", 16));
-                // label1.setStyle("-fx-background-color :#ffffe6");
-                hBox.setStyle("-fx-background-color :#ffffe6");
                 hBox.getChildren().add(label1);
                 hBox.setAlignment(Pos.BASELINE_CENTER);
                 layout.getChildren().add(hBox);
             }
-
-            scene = new Scene(layout, 400, 410);
+            layout.getChildren().add(signOut);
+            scene = new Scene(layout, 400, 420);
         }
     }
 
@@ -88,29 +93,29 @@ public class ReservationScene {
         String role = u.getRole();
         TreeItem<String> order = new TreeItem<>("Order");
         makebranch("Table ID " + r.getTableID(), parent);
-        if (role == "Manager" || role == "Waiter" || role == "Client") makebranch("Mr " + r.getName(), parent);
+        final boolean b1 = role.equals("Manager") || role.equals("Waiter") || role.equals("Client");
+        if (b1) makebranch("Mr " + r.getName(), parent);
         for (DishPair x : r.getOrder().getPlateList()) {
             makebranch(x.getName() + " * " + x.getCount(), order);
         }
-        if (role == "Manager" || role == "Client") makebranch(String.valueOf(r.getOrder().getPrice()), order);
+        if (role.equals("Manager") || role.equals("Client")) makebranch(String.valueOf(r.getOrder().getPrice()), order);
         parent.getChildren().add(order);
         DateFormat parser = new SimpleDateFormat("HH:mm dd/MM/yyyy");
         String a = parser.format(r.getStartingDate());
         String b = parser.format(r.getEndingDate());
         makebranch("From " + a, parent);
-        if (role == "Manager" || role == "Waiter" || role == "Client") makebranch("To " + b, parent);
-        if (role == "Manager" || role == "Waiter" || role == "Client")
+        if (b1) makebranch("To " + b, parent);
+        if (b1)
             makebranch("Number of seats " + r.getSeatNumber(), parent);
-        if (role == "Waiter" || role == "Cooker") {
+        if (role.equals("Waiter") || role.equals("Cooker")) {
             Employee employee = (Employee) u;
             TreeItem<String> btn = new TreeItem(" ");
-            makebranch("State " + r.getState(), parent);
             Button button = new Button("Mark as " + employee.getChange());
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     employee.setReservationstate(r);
-
+                    button.setVisible(false);
                 }
             });
             if (!r.getState().equals(employee.getChange())) btn.setGraphic(button);
@@ -118,21 +123,14 @@ public class ReservationScene {
         }
     }
 
-    public TreeItem<String> makebranch(String details, TreeItem<String> parent) {
+    public void makebranch (String details, TreeItem<String> parent) {
         TreeItem<String> item = new TreeItem<>(details);
         item.setExpanded(true);
         parent.getChildren().add(item);
-        return item;
     }
 
     public Scene getScene() {
         return this.scene;
-    }
-
-    public void setlogin(LoginScene l) {
-
-        this.l = l;
-
     }
 
     public TreeView<String> getTree() {
