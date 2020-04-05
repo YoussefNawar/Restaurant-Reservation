@@ -1,0 +1,24 @@
+must have  : 
+1 ) customer reserve a table 
+2 ) restraunt has set of tables seats etc 
+3 ) manager can view all tables waiters and cooks and some stats 
+4 ) manager see total amount of many per day 
+5 ) customer see restruant and check for a table existing with conditions
+6 ) gui sutiable for customers and employees 
+7 ) sign in with credentials  / sign up page 
+8 ) customer preferences for tables should be available
+9 ) table should have  number of seats smoking or non smoking status 
+10 ) order may contain multiple dishes of the same type 
+11 ) customer should be able to see total price for current order 
+12 ) customer should be able to make an order 
+13 ) waiter should have a screen for seeing scheduled reservaions details 
+14 ) cooker should have a screen for all ordered meals and time and table number
+15 ) cooker should not see the customer name 
+16 ) manager should be able to see full details of the reservations 
+17 ) manager should be able to see the total money earned for today 
+18 ) user should be allowed to log out from the dashboard 
+
+should have : 
+1 ) 
+could have : 
+won't have : 

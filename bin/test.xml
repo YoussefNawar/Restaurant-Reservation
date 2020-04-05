@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Restaurant>
+    <users>
+        <user>
+            <name>youssef</name>
+            <role>Client</role>
+            <username>youssef</username>
+            <password>1234</password>
+        </user>
+    </users>
+    <tables>
+        <table>
+            <number>1</number>
+            <number_of_seats>2</number_of_seats>
+            <smoking>false</smoking>
+        </table>
+    </tables>
+    <dishes>
+        <dish>
+            <name>as</name>
+            <price>2</price>
+            <type>qw</type>
+        </dish>
+    </dishes>
+    <reservations>
+        <reservation>
+            <number_of_seats>12</number_of_seats>
+            <name>youssef</name>
+            <startingdate>13:50 12/10/2017</startingdate>
+            <endingdate>13:50 12/10/2017</endingdate>
+            <smoking>false</smoking>
+            <state>1</state>
+            <tableId>12</tableId>
+            <order>
+                <totalPrice>0.0</totalPrice>
+            </order>
+        </reservation>
+    </reservations>
+</Restaurant>
