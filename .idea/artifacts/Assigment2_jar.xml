@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Assigment2:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Assigment2_jar</output-path>
+    <root id="archive" name="Assigment2.jar">
+      <element id="module-output" name="Assigment2" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/junit.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/groovy-all-2.4.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

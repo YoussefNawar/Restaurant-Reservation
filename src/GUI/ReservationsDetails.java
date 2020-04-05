@@ -154,7 +154,7 @@ public class ReservationsDetails {
 
     private boolean valid(Date a, Date b, Label label, int id ){
         Date today = Calendar.getInstance().getTime();
-        if (b.before(a) || a.before(today) || checkDifference(a, b)) {
+        if (b.before(a) || a.before(today) || checkDifference(a,b)) {
             label.setText("Please enter valid Time");
             return false;
         } else if (i == 0) {
