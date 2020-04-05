@@ -24,7 +24,7 @@ Taking responsibility for executing and creating the gui section of the project 
 
 --------------------------------------------------------------------------------------------------------------------------------
 Assumptions:
--	A customer can make reservations anytime of the day
+-	A customer can make reservations anytime of the day but cannot be lese than 30 minutes or exceeds 2 hours
 -       multiple reservations can be made in the same day
 
 Features:
