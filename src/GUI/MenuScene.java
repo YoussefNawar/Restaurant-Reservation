@@ -30,8 +30,8 @@ public class MenuScene {
 
     public void prepareScene() {
         Label appLabel = new Label("Appetizers:");
-        Label mainLabel = new Label("Main.Main Course:");
-        Label DessertLabel = new Label("Desserts:");
+        Label mainLabel = new Label("Main Course:");
+        Label DessertLabel = new Label("Deserts:");
         appLabel.setFont(new Font("Verdana", 14));
         mainLabel.setFont(new Font("Verdana", 14));
         DessertLabel.setFont(new Font("Verdana", 14));
